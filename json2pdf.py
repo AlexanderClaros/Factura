@@ -30,6 +30,7 @@ c.roundRect(350,alto-222,205,80,0,stroke=1,fill=0)
 # cuadro de la tabla
 c.roundRect(60,alto-560,520,330,0,stroke=1,fill=0)
 c.roundRect(60,alto-244,520,14,0,stroke=1,fill=1)
+c.roundRect(60,alto-560,520,14,0,stroke=1,fill=0)
 c.rect(136,alto-560,0,330)
 c.rect(328,alto-560,0,330)
 c.rect(365,alto-560,0,330)
