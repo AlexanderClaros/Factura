@@ -1,6 +1,7 @@
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 import json
+from medidas_letras import medidas
 
 def writeString(c,x,alto,y,text,size,font='Helvetica-Bold'):
     c.setFont(font,size)
@@ -62,10 +63,10 @@ negrita=5.8
 normal=7
 print (alto,ancho)
 c = canvas.Canvas('factura.pdf',pagesize=A4)
-numero=4  
+numero=3  
 final=False
-for numero_linea in range(numero):
-    if numero_linea<4:
+for numero_tabla in range(numero):
+    if numero_tabla<4:
         c.setFillColor(aColor='lightblue')
         c.setStrokeColor(aColor='gray')
         #nombre documento
@@ -125,10 +126,66 @@ for numero_linea in range(numero):
         writeString(c,450,alto,240,dto,titulo)
         writeString(c,490,alto,240,neto,titulo)
         writeString(c,535,alto,240,importes,titulo)
-        if numero_linea!=3:
+        ##############################################
+        with open('AA23060876.json', mode='r') as file:
+            datos = json.load(file)
+
+        c.setFillColor(aColor='black')
+        # c.setFont("Helvetica", 7)
+
+
+        UNIDADES_MAXIMAS_POR_LINEA = 112
+        UNIDADES_MAXIMAS_POR_LINEA_NEGRITA = 160
+
+        numero_linea = 1
+        contador_lineas_cada_tabla = 1
+        unidades_en_linea = 0
+        texto_liena = ''
+
+
+        for linea in datos['lineas']:
+            for texto in linea[1]:
+                for indice, palabra in enumerate(texto.split(' ')):
+                    unidades_palabra = 0
+                    if "&.7/rf" in texto:
+                        palabra = palabra.replace("&.7/rf>", "")
+                        c.setFont("Helvetica-Bold", 5.4)
+                        unidades_por_linea = UNIDADES_MAXIMAS_POR_LINEA_NEGRITA
+                    else:
+                        c.setFont("Helvetica", 7)
+                        unidades_por_linea = UNIDADES_MAXIMAS_POR_LINEA
+
+                    for letra in palabra:
+                        unidades_palabra += medidas[letra]
+
+                    if unidades_en_linea + unidades_palabra < unidades_por_linea:
+                        unidades_en_linea += unidades_palabra
+                        texto_liena += palabra + ' '
+
+                        if palabra == texto.split(' ')[-1]:
+                            c.drawString(138, alto - (255 + (numero_linea * 12.8 - 10)), texto_liena)
+                            numero_linea += 1
+                            contador_lineas_cada_tabla += 1
+                            texto_liena = ''
+                            unidades_en_linea = 0
+                    else:
+                        c.drawString(138, alto - (255 + (numero_linea * 12.8 - 10)), texto_liena)
+                        numero_linea += 1
+                        contador_lineas_cada_tabla += 1
+                        unidades_en_linea = unidades_palabra
+                        texto_liena = palabra + ' '
+                        if contador_lineas_cada_tabla  > 23:
+                            break
+                if contador_lineas_cada_tabla > 23:
+                    break
+            if contador_lineas_cada_tabla > 23:
+                contador_lineas_cada_tabla = 1
+                break
+        ################################################
+        if numero_tabla!=numero - 1:
             c.showPage()
     final=True
-if numero_linea<4 and final==True:
+if numero_tabla<4 and final==True:
     # texto de Atencion
     writeString(c,90,alto,570,text_aten1,6)
     writeString(c,90,alto,579,text_aten2,6)
@@ -197,5 +254,8 @@ if numero_linea<4 and final==True:
     c.roundRect(60,alto-700,205,10,3,stroke=1,fill=0)
     c.roundRect(60,alto-700.5,205.5,10.5,3,stroke=1,fill=0)
     writeString(c,110,alto,697,p_realizados,6)
+
+    ##############################################
+
 
 c.save()
