@@ -1,0 +1,23 @@
+{
+    "pedido": "Pedido nº 23BVU1, Albaran nº 23BLOH de 09/05/2023 (XPO LOGISITICS) Albaran nº 23BLOH de 09/05/2023 (XPO LOGISITICS) 23BVU1, Albaran nº 23BLOH de 09/05/2023 (XPO LOGISITICS) Albaran nº 23BLOH Pedido nº 23BVU1, Albaran nº 23BLOH de 09/05/2023 (XPO LOGISITICS) Albaran nº 23BLOH de 09/05/2023 (XPO LOGISITICS) 23BVU1, Albaran nº 23BLOH de 09/05/2023 (XPO LOGISITICS) Albaran nº 23BLOH Pedido nº 23BVU1, Albaran nº 23BLOH de 09/05/2023 (XPO LOGISITICS) Albaran nº 23BLOH de 09/05/2023 (XPO LOGISITICS) 23BVU1, Albaran nº 23BLOH de 09/05/2023 (XPO LOGISITICS) Albaran nº 23BLOH Pedido nº 23BVU1, Albaran nº 23BLOH de 09/05/2023 (XPO LOGISITICS) Albaran nº 23BLOH de 09/05/2023 (XPO LOGISITICS) 23BVU1, Albaran nº 23BLOH de 09/05/2023 (XPO LOGISITICS) Albaran nº 23BLOH Pedido nº 23BVU1, Albaran nº 23BLOH de 09/05/2023 (XPO LOGISITICS) Albaran nº 23BLOH de 09/05/2023 (XPO LOGISITICS) 23BVU1, Albaran nº 23BLOH de 09/05/2023 (XPO LOGISITICS) Albaran nº 23BLOH Pedido nº 23BVU1, Albaran nº 23BLOH de 09/05/2023 (XPO LOGISITICS) Albaran nº 23BLOH de 09/05/2023 (XPO LOGISITICS) 23BVU1 09/05/2023 (XPO LOGISITICS)",
+    "articulos": [
+        {
+            "codigo": "4ZB95A",
+            "descripcion": {
+                "especificaciones": "IMPRESORA HP LASER COLOR 150NW A4 /18PPM/64MB/USB/WIFI",
+                "part_number": "Part Number: 4ZB95A#B19",
+                "ean": "EAN: 0194441835548",
+                "numeros_de_serie": ["CNB1R2JCVG", "CNB1R2JCVG", "CNB1R2JCVG", "CNB1R2JCVG","CNB1R2JCVG", "CNB1R2JCVG", "CNB1R2JCVG", "CNB1R2JCVG","CNB1R2JCVG", "CNB1R2JCVG", "CNB1R2JCVG", "CNB1R2JCVG"]
+            }
+        },
+        {
+            "codigo": "4ZB95A",
+            "descripcion": {
+                "especificaciones": "IMPRESORA HP LASER COLOR 150NW A4 /18PPM/64MB/USB/WIFI",
+                "part_number": "Part Number: 4ZB95A#B19",
+                "ean": "EAN: 0194441835548",
+                "numeros_de_serie": ["CNB1R2JCVG", "CNB1R2JCVG", "CNB1R2JCVG", "CNB1R2JCVG","CNB1R2JCVG", "CNB1R2JCVG", "CNB1R2JCVG", "CNB1R2JCVG","CNB1R2JCVG", "CNB1R2JCVG", "CNB1R2JCVG", "CNB1R2JCVG"]
+            }
+        }
+    ]
+}
