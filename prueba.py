@@ -61,7 +61,7 @@ titulo=8
 negrita=5.8
 normal=7
 print (alto,ancho)
-c = canvas.Canvas('factura.pdf',pagesize=A4)
+c = canvas.Canvas('prueba.pdf',pagesize=A4)
 numero=4  
 final=False
 for numero_linea in range(numero):
