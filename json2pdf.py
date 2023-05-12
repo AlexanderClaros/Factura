@@ -24,7 +24,7 @@ texto_liena = ''
 # inicializar una lista de listas, donde cada lista tenga 23 elementos
 
 info_tablas = {
-    'codigos': 0,
+    'codigos': [[]],
     'descripcion_articulos': [[]],
 }
 
@@ -81,6 +81,7 @@ info_tablas["codigos"] = codigos
 for linea in datos['lineas']:
     codigo = linea[0]
     if codigo != "" and codigo != " ":
+        
         indice_lista = 0
         indice_elemento = 0
         for indice, lista in enumerate(info_tablas["descripcion_articulos"]):
@@ -88,13 +89,14 @@ for linea in datos['lineas']:
                 if linea[1][0].startswith(elemento):
                     indice_lista = indice
                     indice_elemento = lista.index(elemento)
-                    print(indice_lista,'---',indice_elemento,'----',codigo)
+                    info_tablas["codigos"][indice_lista][indice_elemento] = codigo
                     break
-            print(codigo)
-            info_tablas["codigos"][indice_lista][indice_elemento] = codigo
+            # print(codigo)
+        
+        # info_tablas["codigos"][indice_lista][indice_elemento] = codigo
 
 
-print(info_tablas["codigos"])
+
 
 
 ##############################################
@@ -106,7 +108,7 @@ def writeString(c,x,alto,y,text,size,font='Helvetica-Bold'):
     c.setFillColor(aColor='lightblue')
 
 
-with open('cabecera_frances.json','r') as archivo:
+with open('cabecera.json','r') as archivo:
     contenido = archivo.read()
     cabecera = json.loads(contenido)
      
@@ -225,64 +227,19 @@ for numero_tabla in range(numero):
         writeString(c,448,alto,240,dto,titulo)
         writeString(c,490,alto,240,neto,titulo)
         writeString(c,535,alto,240,importes,titulo)
-        ##############################################
-        # with open('AA23060876.json', mode='r') as file:
-        #     datos = json.load(file)
+        codigos_tabla_1 = info_tablas["codigos"][numero_tabla]
+        descripciones_tabla_1 = info_tablas["descripcion_articulos"][numero_tabla]
 
-        # c.setFillColor(aColor='black')
-        # # c.setFont("Helvetica", 7)
-
-
-        # UNIDADES_MAXIMAS_POR_LINEA = 112
-        # UNIDADES_MAXIMAS_POR_LINEA_NEGRITA = 160
-
-        # numero_linea = 1
-        # contador_lineas_cada_tabla = 1
-        # unidades_en_linea = 0
-        # texto_liena = ''
-
-
-        # for linea in datos['lineas']:
-        #     for codigo in linea[0]:
-        #         pass
-        #     for texto in linea[1]:
-        #         for indice, palabra in enumerate(texto.split(' ')):
-        #             unidades_palabra = 0
-        #             if "&.7/rf" in texto:
-        #                 palabra = palabra.replace("&.7/rf>", "")
-        #                 c.setFont("Helvetica-Bold", 5.4)
-        #                 unidades_por_linea = UNIDADES_MAXIMAS_POR_LINEA_NEGRITA
-        #             else:
-        #                 c.setFont("Helvetica", 7)
-        #                 unidades_por_linea = UNIDADES_MAXIMAS_POR_LINEA
-
-        #             for letra in palabra:
-        #                 unidades_palabra += medidas[letra]
-
-        #             if unidades_en_linea + unidades_palabra < unidades_por_linea:
-        #                 unidades_en_linea += unidades_palabra
-        #                 texto_liena += palabra + ' '
-
-        #                 if palabra == texto.split(' ')[-1]:
-        #                     c.drawString(138, alto - (255 + (numero_linea * 12.8 - 10)), texto_liena)
-        #                     numero_linea += 1
-        #                     contador_lineas_cada_tabla += 1
-        #                     texto_liena = ''
-        #                     unidades_en_linea = 0
-        #             else:
-        #                 c.drawString(138, alto - (255 + (numero_linea * 12.8 - 10)), texto_liena)
-        #                 numero_linea += 1
-        #                 contador_lineas_cada_tabla += 1
-        #                 unidades_en_linea = unidades_palabra
-        #                 texto_liena = palabra + ' '
-        #                 if contador_lineas_cada_tabla  > 23:
-        #                     break
-        #         if contador_lineas_cada_tabla > 23:
-        #             break
-        #     if contador_lineas_cada_tabla > 23:
-        #         contador_lineas_cada_tabla = 1
-        #         break
-        ################################################
+        lineas_tabla_1 = zip(codigos_tabla_1, descripciones_tabla_1)
+        for index,linea in enumerate(lineas_tabla_1):
+            if '&.7/rf>' in linea[1]:
+                texto=linea[1].replace('&.7/rf>', '')
+                writeString(c,138,alto,255+(index*12.8),texto,5.45)
+            else:
+                writeString(c,138,alto,255+(index*12.8),linea[1],7.5,'Helvetica')
+            text_code=linea[0].replace('&.7>', '')    
+            writeString(c,65,alto,255+(index*12.7),text_code,7.5,'Helvetica')
+            
         if numero_tabla!=numero - 1:
             c.showPage()
     final=True
