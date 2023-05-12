@@ -85,11 +85,13 @@ for linea in datos['lineas']:
         indice_elemento = 0
         for indice, lista in enumerate(info_tablas["descripcion_articulos"]):
             for elemento in lista:
-                if elemento in linea[1][0]:
+                if linea[1][0].startswith(elemento):
                     indice_lista = indice
                     indice_elemento = lista.index(elemento)
+                    print(indice_lista,'---',indice_elemento,'----',codigo)
                     break
-        info_tablas["codigos"][indice_lista][indice_elemento] = codigo
+            print(codigo)
+            info_tablas["codigos"][indice_lista][indice_elemento] = codigo
 
 
 print(info_tablas["codigos"])
