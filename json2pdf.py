@@ -108,7 +108,7 @@ def writeString(c,x,alto,y,text,size,font='Helvetica-Bold'):
     c.setFillColor(aColor='lightblue')
 
 
-with open('cabecera.json','r') as archivo:
+with open('cabecera_frances.json','r') as archivo:
     contenido = archivo.read()
     cabecera = json.loads(contenido)
      
@@ -154,7 +154,10 @@ iban = cabecera["iban"]
 c_c2 = cabecera["c_c2"]
 text_aten1 = cabecera["text1_atencion"]
 text_aten2= cabecera["text2_atencion"]
-
+fecha =cabecera['fecha']
+recopilacion =cabecera['recopilacion']
+admisible =cabecera['admisible']
+p_formulario =cabecera['p_formulario']
 ancho,alto,=A4
 titulo=8
 negrita=5.8
@@ -186,7 +189,7 @@ for numero_tabla in range(numero):
         writeString(c,65,alto,125,n_factura,titulo)
         writeString(c,123,alto,125,serie,titulo)
         writeString(c,148,alto,125,fecha_factura,titulo)
-        writeString(c,210,alto,125,cod_cl,titulo)
+        writeString(c,205,alto,125,cod_cl,titulo)
         writeString(c,245,alto,125,cif_dni,titulo)
         writeString(c,302,alto,125,alm,titulo)
         writeString(c,63,alto,155,vendedor,titulo)
@@ -219,9 +222,9 @@ for numero_tabla in range(numero):
         writeString(c,65,alto,240,codigo,titulo)
         writeString(c,190,alto,240,desc_art,titulo)
         writeString(c,330,alto,240,garantia,titulo)
-        writeString(c,375,alto,240,ud,titulo)
+        writeString(c,370,alto,240,ud,titulo)
         writeString(c,410,alto,240,precio,titulo)
-        writeString(c,450,alto,240,dto,titulo)
+        writeString(c,448,alto,240,dto,titulo)
         writeString(c,490,alto,240,neto,titulo)
         writeString(c,535,alto,240,importes,titulo)
         ##############################################
@@ -309,10 +312,10 @@ if numero_tabla<4 and final==True:
     writeString(c,165,alto,603,retencion,titulo)
     writeString(c,210,alto,603,transporte,titulo)
     writeString(c,265,alto,603,imponible,titulo)
-    writeString(c,330,alto,603,por_iva,titulo)
-    writeString(c,385,alto,603,iva,titulo)
+    writeString(c,322,alto,603,por_iva,titulo)
+    writeString(c,380,alto,603,iva,titulo)
     writeString(c,405,alto,603,por_eqv,titulo)
-    writeString(c,440,alto,603,equivalencia,titulo)
+    writeString(c,435,alto,603,equivalencia,titulo)
     writeString(c,525,alto,603,t_factura,titulo)
     # cuadro de importes
     c.roundRect(285,alto-663,100,30,0,stroke=1,fill=0)
@@ -354,8 +357,19 @@ if numero_tabla<4 and final==True:
     c.roundRect(60,alto-700,205,10,3,stroke=1,fill=0)
     c.roundRect(60,alto-700.5,205.5,10.5,3,stroke=1,fill=0)
     writeString(c,110,alto,697,p_realizados,6)
-
-    ##############################################
+    
+    c.roundRect(60,alto-713,225,8,0,stroke=1,fill=1)
+    c.roundRect(60,alto-732,225,27,0,stroke=1,fill=0)
+    c.roundRect(60,alto-733,226,28,0,stroke=1,fill=0)
+    c.rect(99,alto-732,0,27)
+    c.rect(128,alto-732,0,27)
+    c.rect(170,alto-732,0,27)
+    c.rect(207,alto-732,0,27)
+    writeString(c,62,alto,711,recopilacion,5)
+    writeString(c,102,alto,711,fecha,5)
+    writeString(c,130,alto,711,recopilacion,5)
+    writeString(c,172,alto,711,admisible,5)
+    writeString(c,210,alto,711,p_formulario,5)
 
 
 c.save()
