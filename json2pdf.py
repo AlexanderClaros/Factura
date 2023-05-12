@@ -50,30 +50,49 @@ for linea in datos['lineas']:
 
             if unidades_en_linea + unidades_palabra < unidades_por_linea:
                 unidades_en_linea += unidades_palabra
-                texto_liena += palabra + ' '
-
+                # print(palabra,'---',texto.split(' ')[0])
+                if palabra == texto.split(' ')[0] and texto_liena in texto :
+                    texto_liena=""
+                    texto_liena += palabra+' '
+                    
+                else:
+                    texto_liena += palabra+' '
+                    
+                
                 if palabra == texto.split(' ')[-1]:
                     info_tablas["descripcion_articulos"][-1].append(texto_liena[:-1])
+                    
                     numero_linea += 1
                     contador_lineas_cada_tabla += 1
                     texto_liena = ''
                     unidades_en_linea = 0
-                    if contador_lineas_cada_tabla == 23:
+                    if contador_lineas_cada_tabla == 24:
                         info_tablas["descripcion_articulos"].append([])
                         contador_lineas_cada_tabla = 1
                         contador_tablas += 1
-
+            
             else:
+                
                 info_tablas["descripcion_articulos"][-1].append(texto_liena)
                 numero_linea += 1
                 contador_lineas_cada_tabla += 1
                 unidades_en_linea = unidades_palabra
                 texto_liena = palabra + ' '
-                if contador_lineas_cada_tabla == 23:
+                if contador_lineas_cada_tabla == 24:
                     info_tablas["descripcion_articulos"].append([])
                     contador_lineas_cada_tabla = 1
                     contador_tablas += 1
-
+                
+                if texto.split(' ')[-1] in texto_liena.split():
+                    info_tablas["descripcion_articulos"][-1].append(texto_liena)
+                    numero_linea += 1
+                    contador_lineas_cada_tabla += 1
+                    unidades_en_linea = unidades_palabra
+                    texto_liena =' '
+                    if contador_lineas_cada_tabla == 24:
+                        info_tablas["descripcion_articulos"].append([])
+                        contador_lineas_cada_tabla = 1
+                        contador_tablas += 1
 codigos = [['' for _ in range(23)] for _ in range(contador_tablas)]
 
 info_tablas["codigos"] = codigos
@@ -86,9 +105,11 @@ for linea in datos['lineas']:
         indice_elemento = 0
         for indice, lista in enumerate(info_tablas["descripcion_articulos"]):
             for elemento in lista:
-                if linea[1][0].startswith(elemento):
+                # if linea[1][0].startswith(elemento):
+                if elemento in linea[1][0]:
                     indice_lista = indice
                     indice_elemento = lista.index(elemento)
+                    
                     info_tablas["codigos"][indice_lista][indice_elemento] = codigo
                     break
             # print(codigo)
@@ -96,7 +117,8 @@ for linea in datos['lineas']:
         # info_tablas["codigos"][indice_lista][indice_elemento] = codigo
 
 
-
+print (info_tablas["descripcion_articulos"])
+print (info_tablas["codigos"])
 
 
 ##############################################
