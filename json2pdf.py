@@ -53,7 +53,7 @@ for linea in datos['lineas']:
                 texto_liena += palabra + ' '
 
                 if palabra == texto.split(' ')[-1]:
-                    info_tablas["descripcion_articulos"][-1].append(texto_liena)
+                    info_tablas["descripcion_articulos"][-1].append(texto_liena[:-1])
                     numero_linea += 1
                     contador_lineas_cada_tabla += 1
                     texto_liena = ''
@@ -96,10 +96,6 @@ for linea in datos['lineas']:
 
 print(info_tablas["codigos"])
 
-# print(codigos)
-
-# print(info_tablas["descripcion_articulos"])
-# print(contador_tablas)
 
 ##############################################
 
