@@ -10,15 +10,15 @@ from barcode.writer import ImageWriter
 with open('AA23060876.json', mode='r') as file:
     datos = json.load(file)
 
-# c.setFillColor(aColor='black')
-# c.setFont("Helvetica", 7)
+
 def check0 (dato):
     if dato<1:
         return ''
     else:
         return str(dato)
+print(len(datos['lineas'][1]))
 UNIDADES_MAXIMAS_POR_LINEA = 112
-UNIDADES_MAXIMAS_POR_LINEA_NEGRITA = 160
+UNIDADES_MAXIMAS_POR_LINEA_NEGRITA = 125
 
 contador_tablas = 1
 numero_linea = 1
@@ -90,62 +90,50 @@ def obtener_importes(linea, texto_liena):
     else:
         info_tablas["importes"][-1].append('')
 
+
 for linea in datos['lineas']:
-    for texto in linea[1]:
-        for indice, palabra in enumerate(texto.split(' ')):
-            unidades_palabra = 0
-            if "&.7/rf" in texto:
-                unidades_por_linea = UNIDADES_MAXIMAS_POR_LINEA_NEGRITA
-            else:
-                unidades_por_linea = UNIDADES_MAXIMAS_POR_LINEA
+    linea[1]=''.join(linea[1])
+    if "&.7/rf" in linea[1]:
+        linea[1]="&.8/rf"+linea[1]
+        linea[1]= linea[1].replace("&.7/rf>", ' ')
+    print(linea)
+    # for texto in linea[1]:
+        # print(texto)
+    for indice, palabra in enumerate(linea[1].split(' ')):
+        unidades_palabra = 0
+        if "&.8/rf" in linea[1]:
+            unidades_por_linea = UNIDADES_MAXIMAS_POR_LINEA_NEGRITA
+        else:
+            unidades_por_linea = UNIDADES_MAXIMAS_POR_LINEA
 
-            if "&.7/rf" in palabra:
-                unidades_palabra -= medida_str("&.7/rf>")
-            
-            unidades_palabra += medida_str(palabra)
+        if "&.8/rf" in palabra:
+            unidades_palabra -= medida_str("&.8/rf")
+        
+        unidades_palabra += medida_str(palabra)
 
-            if unidades_en_linea + unidades_palabra < unidades_por_linea:
-                unidades_en_linea += unidades_palabra
-                # print(palabra,'---',texto.split(' ')[0])
-                if palabra == texto.split(' ')[0] and texto_liena in texto :
+        if unidades_en_linea + unidades_palabra < unidades_por_linea:
+            unidades_en_linea += unidades_palabra
+            # print(palabra,'---',texto.split(' ')[0])
+            if palabra == linea[1].split(' ')[0] and texto_liena in linea[1] :
+                if linea[1].startswith("&.8/rf"):
+                    texto_liena="&.8/rf"
+                    texto_liena += palabra+' '
+                   
+                else:
                     texto_liena=""
                     texto_liena += palabra+' '
-                    
-                else:
-                    texto_liena += palabra+' '
-                    
                 
-                if palabra == texto.split(' ')[-1]:
-                    info_tablas["descripcion_articulos"][-1].append(texto_liena[:-1])
-                    ##############################
-                    obtener_codigo(linea, texto_liena)
-                    obtener_garantia(linea, texto_liena)
-                    obtener_unidades(linea, texto_liena)
-                    obtener_precios(linea, texto_liena)
-                    obtener_descuentos(linea, texto_liena)
-                    obtener_netos(linea, texto_liena)
-                    obtener_importes(linea, texto_liena)
-                    ###############################
-                    
-                    numero_linea += 1
-                    contador_lineas_cada_tabla += 1
-                    texto_liena = ''
-                    unidades_en_linea = 0
-                    if contador_lineas_cada_tabla == 24:
-                        info_tablas["descripcion_articulos"].append([])
-                        info_tablas["codigos"].append([])
-                        info_tablas["garantias"].append([])
-                        info_tablas["unidades"].append([])
-                        info_tablas["precios"].append([])
-                        info_tablas["descuentos"].append([])
-                        info_tablas["netos"].append([])
-                        info_tablas["importes"].append([])
-                        contador_lineas_cada_tabla = 1
-                        contador_tablas += 1
-            
             else:
+                texto_liena += palabra+' '
+               
+             
+                    
                 
-                info_tablas["descripcion_articulos"][-1].append(texto_liena)
+            
+            if palabra == linea[1].split(' ')[-1]:
+                if linea[1].startswith("&.8/rf"):
+                    texto_liena="&.8/rf"+texto_liena
+                info_tablas["descripcion_articulos"][-1].append(texto_liena[:-1])
                 ##############################
                 obtener_codigo(linea, texto_liena)
                 obtener_garantia(linea, texto_liena)
@@ -155,10 +143,11 @@ for linea in datos['lineas']:
                 obtener_netos(linea, texto_liena)
                 obtener_importes(linea, texto_liena)
                 ###############################
+                
                 numero_linea += 1
                 contador_lineas_cada_tabla += 1
-                unidades_en_linea = unidades_palabra
-                texto_liena = palabra + ' '
+                texto_liena = ''
+                unidades_en_linea = 0
                 if contador_lineas_cada_tabla == 24:
                     info_tablas["descripcion_articulos"].append([])
                     info_tablas["codigos"].append([])
@@ -170,31 +159,60 @@ for linea in datos['lineas']:
                     info_tablas["importes"].append([])
                     contador_lineas_cada_tabla = 1
                     contador_tablas += 1
-                
-                if texto.split(' ')[-1] in texto_liena.split():
-                    info_tablas["descripcion_articulos"][-1].append(texto_liena)
-                    info_tablas["codigos"][-1].append('')
-                    info_tablas["garantias"][-1].append('')
-                    info_tablas["unidades"][-1].append('')
-                    info_tablas["precios"][-1].append('')
-                    info_tablas["descuentos"][-1].append('')
-                    info_tablas["netos"][-1].append('')
-                    info_tablas["importes"][-1].append('')
-                    numero_linea += 1
-                    contador_lineas_cada_tabla += 1
-                    unidades_en_linea = unidades_palabra
-                    texto_liena =' '
-                    if contador_lineas_cada_tabla == 24:
-                        info_tablas["descripcion_articulos"].append([])
-                        info_tablas["codigos"].append([])
-                        info_tablas["garantias"].append([])
-                        info_tablas["unidades"].append([])
-                        info_tablas["precios"].append([])
-                        info_tablas["descuentos"].append([])
-                        info_tablas["netos"].append([])
-                        info_tablas["importes"].append([])
-                        contador_lineas_cada_tabla = 1
-                        contador_tablas += 1
+        
+        else:
+            if linea[1].startswith("&.8/rf"):
+                texto_liena="&.8/rf"+texto_liena
+            info_tablas["descripcion_articulos"][-1].append(texto_liena)
+            ##############################
+            obtener_codigo(linea, texto_liena)
+            obtener_garantia(linea, texto_liena)
+            obtener_unidades(linea, texto_liena)
+            obtener_precios(linea, texto_liena)
+            obtener_descuentos(linea, texto_liena)
+            obtener_netos(linea, texto_liena)
+            obtener_importes(linea, texto_liena)
+            ###############################
+            numero_linea += 1
+            contador_lineas_cada_tabla += 1
+            unidades_en_linea = unidades_palabra
+            texto_liena = palabra + ' '
+            if contador_lineas_cada_tabla == 24:
+                info_tablas["descripcion_articulos"].append([])
+                info_tablas["codigos"].append([])
+                info_tablas["garantias"].append([])
+                info_tablas["unidades"].append([])
+                info_tablas["precios"].append([])
+                info_tablas["descuentos"].append([])
+                info_tablas["netos"].append([])
+                info_tablas["importes"].append([])
+                contador_lineas_cada_tabla = 1
+                contador_tablas += 1
+            
+            if linea[1].split(' ')[-1] in texto_liena.split():
+                info_tablas["descripcion_articulos"][-1].append(texto_liena)
+                info_tablas["codigos"][-1].append('')
+                info_tablas["garantias"][-1].append('')
+                info_tablas["unidades"][-1].append('')
+                info_tablas["precios"][-1].append('')
+                info_tablas["descuentos"][-1].append('')
+                info_tablas["netos"][-1].append('')
+                info_tablas["importes"][-1].append('')
+                numero_linea += 1
+                contador_lineas_cada_tabla += 1
+                unidades_en_linea = unidades_palabra
+                texto_liena =' '
+                if contador_lineas_cada_tabla == 24:
+                    info_tablas["descripcion_articulos"].append([])
+                    info_tablas["codigos"].append([])
+                    info_tablas["garantias"].append([])
+                    info_tablas["unidades"].append([])
+                    info_tablas["precios"].append([])
+                    info_tablas["descuentos"].append([])
+                    info_tablas["netos"].append([])
+                    info_tablas["importes"].append([])
+                    contador_lineas_cada_tabla = 1
+                    contador_tablas += 1
 
 ##############################################
 
@@ -203,7 +221,7 @@ def writeString(c,x,alto,y,text,size,font='Helvetica-Bold'):
     if font == 'Helvetica-Bold':
         c.setFillColor(aColor='black')
     else:
-        c.setFillColor(aColor='#666666')
+        c.setFillColor(aColor='#111111')
     # c.setFillColor(aColor='black')
     c.drawString(x,alto-y,text)
     c.setFillColor(aColor='lightblue')
@@ -263,9 +281,10 @@ ancho,alto,=A4
 titulo=8
 negrita=5.8
 normal=7
-print (alto,ancho)
+
 c = canvas.Canvas('factura.pdf',pagesize=A4)
-numero=3  
+
+numero=contador_tablas  
 final=False
 total_unidades = 0
 for numero_tabla in range(numero):
@@ -371,10 +390,10 @@ for numero_tabla in range(numero):
         for index,linea in enumerate(lineas_tabla_1):
             if linea[3] != '':
                 total_unidades += float(linea[3])
-            if '&.7/rf>' in linea[1]:
-                texto=linea[1].replace('&.7/rf>', '')
-                writeString(c,138,alto,255+(index*12.8),texto,5.45)
-                # writeString(c,138,alto,255+(index*12.8),texto,5.85)
+            if '&.8/rf' in linea[1]:
+                texto=linea[1].replace('&.8/rf', '')
+                # writeString(c,138,alto,255+(index*12.8),texto,5.45)
+                writeString(c,138,alto,255+(index*12.8),texto,6.7)
             else:
                 writeString(c,138,alto,255+(index*12.8),linea[1],7.5,'Helvetica')
             text_code=linea[0].replace('&.7>', '')    
@@ -573,7 +592,7 @@ if numero_tabla<4 and final==True:
     c.roundRect(60,alto-684,205,25,3,stroke=1,fill=1)
     c.roundRect(60,alto-684.5,205.5,25.5,3,stroke=1,fill=0)
     line=''
-    
+    listado=['','']
     unidadeslinea=1000
     unidades_en_linea=0
     text = medida_str(datos['TRANS'].replace('\n', ''))
@@ -582,8 +601,18 @@ if numero_tabla<4 and final==True:
         if unidades_en_linea + unidades_palabra < unidadeslinea:
             unidades_en_linea += unidades_palabra
             line += palabra+' '
-                  
-    writeString(c,65,alto,670,line,6)
+            listado[1] = line
+            
+        else:
+            listado[0] = line
+            line=''
+            unidades_en_linea=0
+        
+    if len(listado)>1:
+        writeString(c,65,alto,670,listado[0],6)
+        writeString(c,65,alto,680,listado[1],6)
+    else:
+        writeString(c,65,alto,670,listado[0],6)
     c.roundRect(60,alto-700,205,10,3,stroke=1,fill=0)
     c.roundRect(60,alto-700.5,205.5,10.5,3,stroke=1,fill=0)
     writeString(c,110,alto,697,p_realizados,6)
