@@ -44,47 +44,47 @@ def medida_str(texto):
     return unidades_palabra
 
 def obtener_codigo(linea, texto_liena):
-    if linea[1][0].startswith(texto_liena[:-1]) and linea[0] != '' and linea[0] != ' ':
+    if linea[1].startswith(texto_liena[:-1]) and linea[0] != '' and linea[0] != ' ':
         info_tablas["codigos"][-1].append(linea[0])
     else:
         info_tablas["codigos"][-1].append('')
 
 def obtener_garantia(linea, texto_liena):
-    if linea[1][0].startswith(texto_liena[:-1]) and linea[2] != '' and linea[2] != ' ':
+    if linea[1].startswith(texto_liena[:-1]) and linea[2] != '' and linea[2] != ' ':
         info_tablas["garantias"][-1].append(linea[2])
     else:
         info_tablas["garantias"][-1].append('')
 
 def obtener_unidades(linea, texto_liena):
-    if linea[1][0].startswith(texto_liena[:-1]) and linea[3] != 0:
+    if linea[1].startswith(texto_liena[:-1]) and linea[3] != 0:
         numero_formateado = "{:.2f}".format(linea[3])
         info_tablas["unidades"][-1].append(numero_formateado)
     else:
         info_tablas["unidades"][-1].append('')
 
 def obtener_precios(linea, texto_liena):
-    if linea[1][0].startswith(texto_liena[:-1]) and linea[4] != 0:
+    if linea[1].startswith(texto_liena[:-1]) and linea[4] != 0:
         numero_formateado = "{:.3f}".format(linea[4])
         info_tablas["precios"][-1].append(numero_formateado)
     else:
         info_tablas["precios"][-1].append('')
 
 def obtener_descuentos(linea, texto_liena):
-    if linea[1][0].startswith(texto_liena[:-1]) and linea[5] != 0:
+    if linea[1].startswith(texto_liena[:-1]) and linea[5] != 0:
         numero_formateado = "{:.2f}".format(linea[5])
         info_tablas["descuentos"][-1].append(numero_formateado)
     else:
         info_tablas["descuentos"][-1].append('')
 
 def obtener_netos(linea, texto_liena):
-    if linea[1][0].startswith(texto_liena[:-1]) and linea[6] != 0:
+    if linea[1].startswith(texto_liena[:-1]) and linea[6] != 0:
         numero_formateado = "{:.3f}".format(linea[6])
         info_tablas["netos"][-1].append(numero_formateado)
     else:
         info_tablas["netos"][-1].append('')
 
 def obtener_importes(linea, texto_liena):
-    if linea[1][0].startswith(texto_liena[:-1]) and linea[7] != 0:
+    if linea[1].startswith(texto_liena[:-1]) and linea[7] != 0:
         numero_formateado = "{:.3f}".format(linea[7])
         info_tablas["importes"][-1].append(numero_formateado)
     else:
@@ -314,21 +314,29 @@ for numero_tabla in range(numero):
         c.rect(242,alto-145,0,30)
         c.rect(300,alto-145,0,30)
         writeString(c,65,alto,125,n_factura,titulo)
-        writeString(c,65,alto,140,'Prueba',titulo,'Helvetica')#datos['CDFRA']
+        writeString(c,65,alto,140,datos['CODFRA'],titulo,'Helvetica')
         writeString(c,123,alto,125,serie,titulo)
         writeString(c,123,alto,140,datos['SFAC'],titulo,'Helvetica')
         writeString(c,148,alto,125,fecha_factura,titulo)
-        writeString(c,148,alto,140,'Prueba',titulo,'Helvetica')#datos['FE_FEC']
+        writeString(c,148,alto,140,datos['FECFRA'],titulo,'Helvetica')
         writeString(c,205,alto,125,cod_cl,titulo)
-        writeString(c,205,alto,140,'prueba',titulo,'Helvetica')#datos['FE_CCL']
+        writeString(c,205,alto,140,datos['CCL'],titulo,'Helvetica')
         writeString(c,245,alto,125,cif_dni,titulo)
-        writeString(c,245,alto,140,'prueba',titulo,'Helvetica')#datos['CL_CIF']
+        writeString(c,245,alto,140,datos['CL_CIF'],titulo,'Helvetica')
         writeString(c,302,alto,125,alm,titulo)
-        writeString(c,302,alto,140,'Prueba',titulo,'Helvetica')#datos['FE_ALM']
+        writeString(c,302,alto,140,datos['CODALM'],titulo,'Helvetica')
         writeString(c,63,alto,155,vendedor,titulo)
-        writeString(c,106,alto,155,'Prueba',titulo,'Helvetica')#datos['FE_VD'] datos['VD_DENO'] 
+        line=''
+        unidadeslinea=500
+        unidades_en_linea=0
+        for palabra in datos['VD'].split():
+            unidades_palabra += medida_str(palabra)
+            if unidades_en_linea + unidades_palabra < unidadeslinea:
+                unidades_en_linea += unidades_palabra
+                line += palabra+' '
+        writeString(c,106,alto,155,line,titulo,'Helvetica')
         writeString(c,213,alto,155,ext_centralita,titulo)
-        writeString(c,296,alto,155,'prueba',titulo,'Helvetica')#datos['VD_EXT']
+        writeString(c,296,alto,155,datos['VD_EXT'],titulo,'Helvetica')
         # cuadro envio
         c.roundRect(60,alto-222,262,48,0,stroke=1,fill=0)
         c.roundRect(60,alto-223,263,49,0,stroke=1,fill=0)
@@ -404,7 +412,7 @@ for numero_tabla in range(numero):
             writeString(c,450,alto,255+(index*12.8),linea[5],7.5,'Helvetica')
             writeString(c,480,alto,255+(index*12.8),linea[6],7.5,'Helvetica')
             writeString(c,526,alto,255+(index*12.8),linea[7],7.5,'Helvetica')
-        writeString(c,368,alto,556,str("{:.2f}".format(total_unidades)),7.5,'Helvetica')
+        writeString(c,368,alto,556,str("{:.2f}".format(total_unidades)),7.5,'Helvetica-Bold')
             
         if numero_tabla!=numero - 1:
             c.showPage()
