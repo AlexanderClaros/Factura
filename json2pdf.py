@@ -327,7 +327,6 @@ for numero_tabla in range(numero):
         lineas_tabla_1 = zip(codigos_tabla_1, descripciones_tabla_1, garantias_tabla, unidades_tabla, precios_tabla, descuentos_tabla, netos_tabla, importes_tabla)
         for index,linea in enumerate(lineas_tabla_1):
             if linea[3] != '':
-                print(linea[3])
                 total_unidades += float(linea[3])
             if '&.7/rf>' in linea[1]:
                 texto=linea[1].replace('&.7/rf>', '')
