@@ -5,8 +5,9 @@ from medidas_letras import medidas
 from barcode import *
 from barcode.writer import ImageWriter
 
+
 ##############################################
-with open('AA23060876_bk.json', mode='r') as file:
+with open('AA23060876.json', mode='r') as file:
     datos = json.load(file)
 
 # c.setFillColor(aColor='black')
@@ -199,7 +200,11 @@ for linea in datos['lineas']:
 
 def writeString(c,x,alto,y,text,size,font='Helvetica-Bold'):
     c.setFont(font,size)
-    c.setFillColor(aColor='black')
+    if font == 'Helvetica-Bold':
+        c.setFillColor(aColor='black')
+    else:
+        c.setFillColor(aColor='#666666')
+    # c.setFillColor(aColor='black')
     c.drawString(x,alto-y,text)
     c.setFillColor(aColor='lightblue')
 
@@ -369,6 +374,7 @@ for numero_tabla in range(numero):
             if '&.7/rf>' in linea[1]:
                 texto=linea[1].replace('&.7/rf>', '')
                 writeString(c,138,alto,255+(index*12.8),texto,5.45)
+                # writeString(c,138,alto,255+(index*12.8),texto,5.85)
             else:
                 writeString(c,138,alto,255+(index*12.8),linea[1],7.5,'Helvetica')
             text_code=linea[0].replace('&.7>', '')    
