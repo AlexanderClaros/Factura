@@ -6,7 +6,7 @@ from barcode import *
 from barcode.writer import ImageWriter
 
 ##############################################
-with open('AA23060876.json', mode='r') as file:
+with open('AA23060876_bk.json', mode='r') as file:
     datos = json.load(file)
 
 # c.setFillColor(aColor='black')
@@ -25,12 +25,15 @@ contador_lineas_cada_tabla = 1
 unidades_en_linea = 0
 texto_liena = ''
 
-# info_por_tabla = [[]]
-# inicializar una lista de listas, donde cada lista tenga 23 elementos
-
 info_tablas = {
     'codigos': [[]],
     'descripcion_articulos': [[]],
+    'garantias': [[]],
+    'unidades': [[]],
+    'precios': [[]],
+    'descuentos': [[]],
+    'netos': [[]],
+    'importes': [[]],
 }
 
 def medida_str(texto):
@@ -38,6 +41,53 @@ def medida_str(texto):
     for letra in texto:
         unidades_palabra += medidas[letra]
     return unidades_palabra
+
+def obtener_codigo(linea, texto_liena):
+    if linea[1][0].startswith(texto_liena[:-1]) and linea[0] != '' and linea[0] != ' ':
+        info_tablas["codigos"][-1].append(linea[0])
+    else:
+        info_tablas["codigos"][-1].append('')
+
+def obtener_garantia(linea, texto_liena):
+    if linea[1][0].startswith(texto_liena[:-1]) and linea[2] != '' and linea[2] != ' ':
+        info_tablas["garantias"][-1].append(linea[2])
+    else:
+        info_tablas["garantias"][-1].append('')
+
+def obtener_unidades(linea, texto_liena):
+    if linea[1][0].startswith(texto_liena[:-1]) and linea[3] != 0:
+        numero_formateado = "{:.2f}".format(linea[3])
+        info_tablas["unidades"][-1].append(numero_formateado)
+    else:
+        info_tablas["unidades"][-1].append('')
+
+def obtener_precios(linea, texto_liena):
+    if linea[1][0].startswith(texto_liena[:-1]) and linea[4] != 0:
+        numero_formateado = "{:.3f}".format(linea[4])
+        info_tablas["precios"][-1].append(numero_formateado)
+    else:
+        info_tablas["precios"][-1].append('')
+
+def obtener_descuentos(linea, texto_liena):
+    if linea[1][0].startswith(texto_liena[:-1]) and linea[5] != 0:
+        numero_formateado = "{:.2f}".format(linea[5])
+        info_tablas["descuentos"][-1].append(numero_formateado)
+    else:
+        info_tablas["descuentos"][-1].append('')
+
+def obtener_netos(linea, texto_liena):
+    if linea[1][0].startswith(texto_liena[:-1]) and linea[6] != 0:
+        numero_formateado = "{:.3f}".format(linea[6])
+        info_tablas["netos"][-1].append(numero_formateado)
+    else:
+        info_tablas["netos"][-1].append('')
+
+def obtener_importes(linea, texto_liena):
+    if linea[1][0].startswith(texto_liena[:-1]) and linea[7] != 0:
+        numero_formateado = "{:.3f}".format(linea[7])
+        info_tablas["importes"][-1].append(numero_formateado)
+    else:
+        info_tablas["importes"][-1].append('')
 
 for linea in datos['lineas']:
     for texto in linea[1]:
@@ -66,6 +116,15 @@ for linea in datos['lineas']:
                 
                 if palabra == texto.split(' ')[-1]:
                     info_tablas["descripcion_articulos"][-1].append(texto_liena[:-1])
+                    ##############################
+                    obtener_codigo(linea, texto_liena)
+                    obtener_garantia(linea, texto_liena)
+                    obtener_unidades(linea, texto_liena)
+                    obtener_precios(linea, texto_liena)
+                    obtener_descuentos(linea, texto_liena)
+                    obtener_netos(linea, texto_liena)
+                    obtener_importes(linea, texto_liena)
+                    ###############################
                     
                     numero_linea += 1
                     contador_lineas_cada_tabla += 1
@@ -73,58 +132,68 @@ for linea in datos['lineas']:
                     unidades_en_linea = 0
                     if contador_lineas_cada_tabla == 24:
                         info_tablas["descripcion_articulos"].append([])
+                        info_tablas["codigos"].append([])
+                        info_tablas["garantias"].append([])
+                        info_tablas["unidades"].append([])
+                        info_tablas["precios"].append([])
+                        info_tablas["descuentos"].append([])
+                        info_tablas["netos"].append([])
+                        info_tablas["importes"].append([])
                         contador_lineas_cada_tabla = 1
                         contador_tablas += 1
             
             else:
                 
                 info_tablas["descripcion_articulos"][-1].append(texto_liena)
+                ##############################
+                obtener_codigo(linea, texto_liena)
+                obtener_garantia(linea, texto_liena)
+                obtener_unidades(linea, texto_liena)
+                obtener_precios(linea, texto_liena)
+                obtener_descuentos(linea, texto_liena)
+                obtener_netos(linea, texto_liena)
+                obtener_importes(linea, texto_liena)
+                ###############################
                 numero_linea += 1
                 contador_lineas_cada_tabla += 1
                 unidades_en_linea = unidades_palabra
                 texto_liena = palabra + ' '
                 if contador_lineas_cada_tabla == 24:
                     info_tablas["descripcion_articulos"].append([])
+                    info_tablas["codigos"].append([])
+                    info_tablas["garantias"].append([])
+                    info_tablas["unidades"].append([])
+                    info_tablas["precios"].append([])
+                    info_tablas["descuentos"].append([])
+                    info_tablas["netos"].append([])
+                    info_tablas["importes"].append([])
                     contador_lineas_cada_tabla = 1
                     contador_tablas += 1
                 
                 if texto.split(' ')[-1] in texto_liena.split():
                     info_tablas["descripcion_articulos"][-1].append(texto_liena)
+                    info_tablas["codigos"][-1].append('')
+                    info_tablas["garantias"][-1].append('')
+                    info_tablas["unidades"][-1].append('')
+                    info_tablas["precios"][-1].append('')
+                    info_tablas["descuentos"][-1].append('')
+                    info_tablas["netos"][-1].append('')
+                    info_tablas["importes"][-1].append('')
                     numero_linea += 1
                     contador_lineas_cada_tabla += 1
                     unidades_en_linea = unidades_palabra
                     texto_liena =' '
                     if contador_lineas_cada_tabla == 24:
                         info_tablas["descripcion_articulos"].append([])
+                        info_tablas["codigos"].append([])
+                        info_tablas["garantias"].append([])
+                        info_tablas["unidades"].append([])
+                        info_tablas["precios"].append([])
+                        info_tablas["descuentos"].append([])
+                        info_tablas["netos"].append([])
+                        info_tablas["importes"].append([])
                         contador_lineas_cada_tabla = 1
                         contador_tablas += 1
-codigos = [['' for _ in range(23)] for _ in range(contador_tablas)]
-
-info_tablas["codigos"] = codigos
-
-for linea in datos['lineas']:
-    codigo = linea[0]
-    if codigo != "" and codigo != " ":
-        
-        indice_lista = 0
-        indice_elemento = 0
-        for indice, lista in enumerate(info_tablas["descripcion_articulos"]):
-            for elemento in lista:
-                # if linea[1][0].startswith(elemento):
-                if elemento in linea[1][0]:
-                    indice_lista = indice
-                    indice_elemento = lista.index(elemento)
-                    
-                    info_tablas["codigos"][indice_lista][indice_elemento] = codigo
-                    break
-            # print(codigo)
-        
-        # info_tablas["codigos"][indice_lista][indice_elemento] = codigo
-
-
-print (info_tablas["descripcion_articulos"])
-print (info_tablas["codigos"])
-
 
 ##############################################
 
@@ -193,6 +262,7 @@ print (alto,ancho)
 c = canvas.Canvas('factura.pdf',pagesize=A4)
 numero=3  
 final=False
+total_unidades = 0
 for numero_tabla in range(numero):
     if numero_tabla<4:
         c.setFillColor(aColor='lightblue')
@@ -285,16 +355,31 @@ for numero_tabla in range(numero):
         writeString(c,535,alto,240,importes,titulo)
         codigos_tabla_1 = info_tablas["codigos"][numero_tabla]
         descripciones_tabla_1 = info_tablas["descripcion_articulos"][numero_tabla]
+        garantias_tabla = info_tablas["garantias"][numero_tabla]
+        unidades_tabla = info_tablas["unidades"][numero_tabla]
+        precios_tabla = info_tablas["precios"][numero_tabla]
+        descuentos_tabla = info_tablas["descuentos"][numero_tabla]
+        netos_tabla = info_tablas["netos"][numero_tabla]
+        importes_tabla = info_tablas["importes"][numero_tabla]
 
-        lineas_tabla_1 = zip(codigos_tabla_1, descripciones_tabla_1)
+        lineas_tabla_1 = zip(codigos_tabla_1, descripciones_tabla_1, garantias_tabla, unidades_tabla, precios_tabla, descuentos_tabla, netos_tabla, importes_tabla)
         for index,linea in enumerate(lineas_tabla_1):
+            if linea[3] != '':
+                total_unidades += float(linea[3])
             if '&.7/rf>' in linea[1]:
                 texto=linea[1].replace('&.7/rf>', '')
                 writeString(c,138,alto,255+(index*12.8),texto,5.45)
             else:
                 writeString(c,138,alto,255+(index*12.8),linea[1],7.5,'Helvetica')
             text_code=linea[0].replace('&.7>', '')    
-            writeString(c,65,alto,255+(index*12.7),text_code,7.5,'Helvetica')
+            writeString(c,65,alto,255+(index*12.8),text_code,7.5,'Helvetica')
+            writeString(c,330,alto,255+(index*12.8),linea[2],7.5,'Helvetica')
+            writeString(c,368,alto,255+(index*12.8),linea[3],7.5,'Helvetica')
+            writeString(c,405,alto,255+(index*12.8),linea[4],7.5,'Helvetica')
+            writeString(c,450,alto,255+(index*12.8),linea[5],7.5,'Helvetica')
+            writeString(c,480,alto,255+(index*12.8),linea[6],7.5,'Helvetica')
+            writeString(c,526,alto,255+(index*12.8),linea[7],7.5,'Helvetica')
+        writeString(c,368,alto,556,str("{:.2f}".format(total_unidades)),7.5,'Helvetica')
             
         if numero_tabla!=numero - 1:
             c.showPage()
