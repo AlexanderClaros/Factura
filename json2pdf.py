@@ -2,6 +2,8 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 import json
 from medidas_letras import medidas
+from barcode import *
+from barcode.writer import ImageWriter
 
 ##############################################
 with open('AA23060876.json', mode='r') as file:
@@ -9,8 +11,11 @@ with open('AA23060876.json', mode='r') as file:
 
 # c.setFillColor(aColor='black')
 # c.setFont("Helvetica", 7)
-
-
+def check0 (dato):
+    if dato<1:
+        return ''
+    else:
+        return str(dato)
 UNIDADES_MAXIMAS_POR_LINEA = 112
 UNIDADES_MAXIMAS_POR_LINEA_NEGRITA = 160
 
@@ -195,7 +200,13 @@ for numero_tabla in range(numero):
         #nombre documento
         c.roundRect(60,alto-114,170,20,3,stroke=1 ,fill=0)
         c.roundRect(60,alto-114,171,20,3,stroke=1 ,fill=0)
-        writeString(c,115,alto,110,tipo,15)
+        writeString(c,115,alto,110,datos['DOC_DENU'],15)
+            #codigo barras
+        with open('codigo.png', 'wb') as f:
+            Code39(datos['FE_BARCODE'].replace('*',''), writer=ImageWriter(),add_checksum=False).write(f, text='', options= {'quiet_zone':0})
+            c.drawImage('codigo.png',235,alto-112,110,15)
+                        
+      
         # cuadro datos factura
         c.roundRect(60,alto-159,262,44,0,stroke=1,fill=0)
         c.roundRect(60,alto-160,263,45,0,stroke=1,fill=0)
@@ -209,26 +220,49 @@ for numero_tabla in range(numero):
         c.rect(242,alto-145,0,30)
         c.rect(300,alto-145,0,30)
         writeString(c,65,alto,125,n_factura,titulo)
+        writeString(c,65,alto,140,'Prueba',titulo,'Helvetica')#datos['CDFRA']
         writeString(c,123,alto,125,serie,titulo)
+        writeString(c,123,alto,140,datos['SFAC'],titulo,'Helvetica')
         writeString(c,148,alto,125,fecha_factura,titulo)
+        writeString(c,148,alto,140,'Prueba',titulo,'Helvetica')#datos['FE_FEC']
         writeString(c,205,alto,125,cod_cl,titulo)
+        writeString(c,205,alto,140,'prueba',titulo,'Helvetica')#datos['FE_CCL']
         writeString(c,245,alto,125,cif_dni,titulo)
+        writeString(c,245,alto,140,'prueba',titulo,'Helvetica')#datos['CL_CIF']
         writeString(c,302,alto,125,alm,titulo)
+        writeString(c,302,alto,140,'Prueba',titulo,'Helvetica')#datos['FE_ALM']
         writeString(c,63,alto,155,vendedor,titulo)
+        writeString(c,106,alto,155,'Prueba',titulo,'Helvetica')#datos['FE_VD'] datos['VD_DENO'] 
         writeString(c,213,alto,155,ext_centralita,titulo)
+        writeString(c,296,alto,155,'prueba',titulo,'Helvetica')#datos['VD_EXT']
         # cuadro envio
         c.roundRect(60,alto-222,262,48,0,stroke=1,fill=0)
         c.roundRect(60,alto-223,263,49,0,stroke=1,fill=0)
         writeString(c,60,alto,170,enviar_a,titulo)
+        writeString(c,62,alto,185,datos['DL_DENO'],titulo,'Helvetica')
+        writeString(c,62,alto,195,datos['DL_CON'],titulo,'Helvetica')
+        writeString(c,62,alto,205,datos['DL_DOM'],titulo,'Helvetica')
+        writeString(c,62,alto,215,datos['DL_CDP']+' '+datos['DL_POB']+' '+datos['DL_PROV']+' '+datos['DL_PAIS'] ,titulo,'Helvetica')
 
         # cuadro datos de remitente
         c.roundRect(350,alto-125,205,73,0,stroke=1,fill=0)
         c.roundRect(350,alto-126,206,74,0,stroke=1,fill=0)
+        writeString(c,350,alto,60,'Prueba',titulo,'Helvetica')#datos['AM_NOM']
+        writeString(c,550-len('prueba')*4.7,alto,75,'Prueba',titulo)#datos['AM_DOM']
+        writeString(c,550-len(datos['AMCDP'])*4.7,alto,90,datos['AMCDP'],titulo)
+        writeString(c,550-len(datos['AMFAX'])*4.2,alto,105,datos['AMFAX'],titulo)
+        writeString(c,550-len(datos['AMFAX'])*4.2,alto,120,datos['AMFAX'],titulo)
         # cuadro datos de destinatario
         c.roundRect(350,alto-222,205,80,0,stroke=1,fill=0)
         c.roundRect(350,alto-223,206,81,0,stroke=1,fill=0)
         writeString(c,350,alto,138,factura_a,titulo)
-        writeString(c,520,alto,138,'Pag. ',titulo,'Helvetica')
+        writeString(c,352,alto,152,'Prueba',titulo)#datos['CL_DENO']
+        writeString(c,352,alto,165,'prueba',titulo,'Helvetica')#datos['CL_NOM']
+        writeString(c,352,alto,177,'Prueba',titulo,'Helvetica')#datos['CL_DOM']
+        writeString(c,352,alto,190,datos['CL_CDP']+' '+ datos['CL_POB'],titulo,'Helvetica')
+        writeString(c,352,alto,202,datos['CL_PROV']+' '+ datos['CL_PAIS'],titulo,'Helvetica')
+        writeString(c,352,alto,215,'Prueba',titulo,'Helvetica')#datos['CL_ATT']
+        writeString(c,520,alto,138,'Pag. '+str(numero_tabla+1),titulo,'Helvetica')
         # cuadro de la tabla
         c.roundRect(60,alto-560,520,330,0,stroke=1,fill=0)
         c.roundRect(60,alto-244,520,14,0,stroke=1,fill=1)
@@ -294,6 +328,16 @@ if numero_tabla<4 and final==True:
     writeString(c,405,alto,603,por_eqv,titulo)
     writeString(c,435,alto,603,equivalencia,titulo)
     writeString(c,525,alto,603,t_factura,titulo)
+    writeString(c,70,alto,620,check0(datos['FE_TTTIMP'][0][0]),titulo)
+    writeString(c,112,alto,620,check0(datos['FE_TTTIMP'][0][1]),titulo)
+    writeString(c,159,alto,620,check0(datos['FE_TTTIMP'][0][2]),titulo)
+    writeString(c,206,alto,620,check0(datos['FE_TTTIMP'][0][3]),titulo)
+    writeString(c,275,alto,620,check0(datos['FE_TTTIMP'][0][4]),titulo)
+    writeString(c,325,alto,620,check0(datos['FE_TTTIMP'][0][5]),titulo)
+    writeString(c,356,alto,620,check0(datos['FE_TTTIMP'][0][6]),titulo)
+    writeString(c,408,alto,620,check0(datos['FE_TTTIMP'][0][7]),titulo)
+    writeString(c,439,alto,620,check0(datos['FE_TTTIMP'][0][8]),titulo)
+    writeString(c,500,alto,620,check0(datos['FE_TTTIMP'][0][9]),titulo)
     # cuadro de importes
     c.roundRect(285,alto-663,100,30,0,stroke=1,fill=0)
     c.roundRect(285,alto-664,101,31,0,stroke=1,fill=0)
@@ -301,6 +345,7 @@ if numero_tabla<4 and final==True:
     c.rect(328,alto-663,0,30)
     writeString(c,288,alto,644,f_ven,titulo)
     writeString(c,335,alto,644,importes2,titulo)
+
     # cuadro de total
     c.roundRect(395,alto-663,182,30,0,stroke=1,fill=0)
     c.roundRect(395,alto-664,183,31,0,stroke=1,fill=0)
@@ -324,6 +369,11 @@ if numero_tabla<4 and final==True:
     writeString(c,398,alto,680,swift,titulo)
     writeString(c,450,alto,680,iban,titulo)
     writeString(c,476,alto,680,c_c,titulo)
+    for pos,d_banco in enumerate(datos['BCH']):
+        writeString(c,295,alto,693+(12*pos),d_banco[0],6)
+        writeString(c,396,alto,693+(12*pos),d_banco[1],6,'Helvetica')
+        writeString(c,449,alto,693+(12*pos),d_banco[3],6,'Helvetica')
+        writeString(c,475,alto,693+(12*pos),d_banco[2],6)
     # cuadros de forma de pago
     c.roundRect(60,alto-653,205,17,3,stroke=1,fill=1)
     c.roundRect(60,alto-653.5,205.5,17.5,3,stroke=1,fill=0)
@@ -331,6 +381,7 @@ if numero_tabla<4 and final==True:
     writeString(c,65,alto,650,c_c2,6)
     c.roundRect(60,alto-684,205,25,3,stroke=1,fill=1)
     c.roundRect(60,alto-684.5,205.5,25.5,3,stroke=1,fill=0)
+    writeString(c,50,alto,675,datos['TRANS'].replace('\n', ''),6)
     c.roundRect(60,alto-700,205,10,3,stroke=1,fill=0)
     c.roundRect(60,alto-700.5,205.5,10.5,3,stroke=1,fill=0)
     writeString(c,110,alto,697,p_realizados,6)
@@ -347,6 +398,8 @@ if numero_tabla<4 and final==True:
     writeString(c,130,alto,711,recopilacion,5)
     writeString(c,172,alto,711,admisible,5)
     writeString(c,210,alto,711,p_formulario,5)
+    # texto de reemboloso
+    writeString(c,40,alto,745,datos['MSG_LPI'].replace('\n', ''),5.3)
 
 
 c.save()
