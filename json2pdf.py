@@ -16,7 +16,6 @@ def check0 (dato):
         return ''
     else:
         return str(dato)
-print(len(datos['lineas'][1]))
 UNIDADES_MAXIMAS_POR_LINEA = 112
 UNIDADES_MAXIMAS_POR_LINEA_NEGRITA = 125
 
@@ -44,47 +43,47 @@ def medida_str(texto):
     return unidades_palabra
 
 def obtener_codigo(linea, texto_liena):
-    if linea[1][0].startswith(texto_liena[:-1]) and linea[0] != '' and linea[0] != ' ':
+    if linea[1].startswith(texto_liena[:-1]) and linea[0] != '' and linea[0] != ' ':
         info_tablas["codigos"][-1].append(linea[0])
     else:
         info_tablas["codigos"][-1].append('')
 
 def obtener_garantia(linea, texto_liena):
-    if linea[1][0].startswith(texto_liena[:-1]) and linea[2] != '' and linea[2] != ' ':
+    if linea[1].startswith(texto_liena[:-1]) and linea[2] != '' and linea[2] != ' ':
         info_tablas["garantias"][-1].append(linea[2])
     else:
         info_tablas["garantias"][-1].append('')
 
 def obtener_unidades(linea, texto_liena):
-    if linea[1][0].startswith(texto_liena[:-1]) and linea[3] != 0:
+    if linea[1].startswith(texto_liena[:-1]) and linea[3] != 0:
         numero_formateado = "{:.2f}".format(linea[3])
         info_tablas["unidades"][-1].append(numero_formateado)
     else:
         info_tablas["unidades"][-1].append('')
 
 def obtener_precios(linea, texto_liena):
-    if linea[1][0].startswith(texto_liena[:-1]) and linea[4] != 0:
+    if linea[1].startswith(texto_liena[:-1]) and linea[4] != 0:
         numero_formateado = "{:.3f}".format(linea[4])
         info_tablas["precios"][-1].append(numero_formateado)
     else:
         info_tablas["precios"][-1].append('')
 
 def obtener_descuentos(linea, texto_liena):
-    if linea[1][0].startswith(texto_liena[:-1]) and linea[5] != 0:
+    if linea[1].startswith(texto_liena[:-1]) and linea[5] != 0:
         numero_formateado = "{:.2f}".format(linea[5])
         info_tablas["descuentos"][-1].append(numero_formateado)
     else:
         info_tablas["descuentos"][-1].append('')
 
 def obtener_netos(linea, texto_liena):
-    if linea[1][0].startswith(texto_liena[:-1]) and linea[6] != 0:
+    if linea[1].startswith(texto_liena[:-1]) and linea[6] != 0:
         numero_formateado = "{:.3f}".format(linea[6])
         info_tablas["netos"][-1].append(numero_formateado)
     else:
         info_tablas["netos"][-1].append('')
 
 def obtener_importes(linea, texto_liena):
-    if linea[1][0].startswith(texto_liena[:-1]) and linea[7] != 0:
+    if linea[1].startswith(texto_liena[:-1]) and linea[7] != 0:
         numero_formateado = "{:.3f}".format(linea[7])
         info_tablas["importes"][-1].append(numero_formateado)
     else:
@@ -96,9 +95,6 @@ for linea in datos['lineas']:
     if "&.7/rf" in linea[1]:
         linea[1]="&.8/rf"+linea[1]
         linea[1]= linea[1].replace("&.7/rf>", ' ')
-    print(linea)
-    # for texto in linea[1]:
-        # print(texto)
     for indice, palabra in enumerate(linea[1].split(' ')):
         unidades_palabra = 0
         if "&.8/rf" in linea[1]:
@@ -113,7 +109,6 @@ for linea in datos['lineas']:
 
         if unidades_en_linea + unidades_palabra < unidades_por_linea:
             unidades_en_linea += unidades_palabra
-            # print(palabra,'---',texto.split(' ')[0])
             if palabra == linea[1].split(' ')[0] and texto_liena in linea[1] :
                 if linea[1].startswith("&.8/rf"):
                     texto_liena="&.8/rf"
@@ -277,6 +272,7 @@ fecha =cabecera['fecha']
 recopilacion =cabecera['recopilacion']
 admisible =cabecera['admisible']
 p_formulario =cabecera['p_formulario']
+
 ancho,alto,=A4
 titulo=8
 negrita=5.8
@@ -341,8 +337,8 @@ for numero_tabla in range(numero):
         # cuadro datos de remitente
         c.roundRect(350,alto-125,205,73,0,stroke=1,fill=0)
         c.roundRect(350,alto-126,206,74,0,stroke=1,fill=0)
-        writeString(c,350,alto,60,'Prueba',titulo,'Helvetica')#datos['AM_NOM']
-        writeString(c,550-len('prueba')*4.7,alto,75,'Prueba',titulo)#datos['AM_DOM']
+        writeString(c,355,alto,60,datos["AMNOM"],titulo,'Helvetica')#datos['AM_NOM']
+        writeString(c,550-len(datos["AMDOM"])*4.7,alto,75,datos["AMDOM"],titulo)#datos['AM_DOM']
         writeString(c,550-len(datos['AMCDP'])*4.7,alto,90,datos['AMCDP'],titulo)
         writeString(c,550-len(datos['AMFAX'])*4.2,alto,105,datos['AMFAX'],titulo)
         writeString(c,550-len(datos['AMFAX'])*4.2,alto,120,datos['AMFAX'],titulo)
@@ -350,12 +346,12 @@ for numero_tabla in range(numero):
         c.roundRect(350,alto-222,205,80,0,stroke=1,fill=0)
         c.roundRect(350,alto-223,206,81,0,stroke=1,fill=0)
         writeString(c,350,alto,138,factura_a,titulo)
-        writeString(c,352,alto,152,'Prueba',titulo)#datos['CL_DENO']
-        writeString(c,352,alto,165,'prueba',titulo,'Helvetica')#datos['CL_NOM']
-        writeString(c,352,alto,177,'Prueba',titulo,'Helvetica')#datos['CL_DOM']
+        writeString(c,352,alto,152,datos['CL_DENO'],titulo)#datos['CL_DENO']
+        writeString(c,352,alto,165,datos['CL_NOM'],titulo,'Helvetica')#datos['CL_NOM']
+        writeString(c,352,alto,177,datos['CL_DOM'],titulo,'Helvetica')#datos['CL_DOM']
         writeString(c,352,alto,190,datos['CL_CDP']+' '+ datos['CL_POB'],titulo,'Helvetica')
         writeString(c,352,alto,202,datos['CL_PROV']+' '+ datos['CL_PAIS'],titulo,'Helvetica')
-        writeString(c,352,alto,215,'Prueba',titulo,'Helvetica')#datos['CL_ATT']
+        writeString(c,352,alto,215,datos['CL_ATT'],titulo,'Helvetica')#datos['CL_ATT']
         writeString(c,520,alto,138,'Pag. '+str(numero_tabla+1),titulo,'Helvetica')
         # cuadro de la tabla
         c.roundRect(60,alto-560,520,330,0,stroke=1,fill=0)
@@ -404,7 +400,7 @@ for numero_tabla in range(numero):
             writeString(c,450,alto,255+(index*12.8),linea[5],7.5,'Helvetica')
             writeString(c,480,alto,255+(index*12.8),linea[6],7.5,'Helvetica')
             writeString(c,526,alto,255+(index*12.8),linea[7],7.5,'Helvetica')
-        writeString(c,368,alto,556,str("{:.2f}".format(total_unidades)),7.5,'Helvetica')
+        writeString(c,368,alto,556,str("{:.2f}".format(total_unidades)),7.5,'Helvetica-Bold')
             
         if numero_tabla!=numero - 1:
             c.showPage()

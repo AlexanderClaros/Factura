@@ -1,13 +1,56 @@
 {
-    "CODALM": "01",
+    "DTO": "Retencion",
     "FE_DCOBS": [],
-    "CL_DENO": "INFORTISA S.L.",
+    "DL_DOM": "C/ MAESTRO SERRANO 4",
     "CL_POB": "ALFARA DEL PATRIARCA",
-    "SFAC": "AA",
     "DL_CDP": "46115",
-    "FECFRA": "09/05/2023",
-    "CCL": "000120",
     "PDTO": "% R.IRPF",
+    "BCH": [
+        [
+            "BBVA",
+            "BBVAESMMXX",
+            "0182-2359-06-0015004986",
+            "ES07"
+        ],
+        [
+            "Banco Santander Central Hispano",
+            "BSCHESMM",
+            "0049-2523-03-2814100046",
+            "ES98"
+        ],
+        [
+            "Bankinter",
+            "BKBKESMM ",
+            "0128-9479-43-0550028514",
+            "ES73"
+        ],
+        [
+            "La Caixa",
+            "CAIXESBB",
+            "2100-2559-58-0210025134",
+            "ES27"
+        ]
+    ],
+    "CL_PROV": "VALENCIA",
+    "DL_DENO": "INFORTISA S.L.",
+    "DL_PAIS": "(ESPA\u00f1A)",
+    "MSG_LPI": "El consumidor final tiene derecho a reclamar el reembolso de la compensacionequitativa por copia privada si cumple los requisitos establecidos en el articulo 25.8 deltexto refundido de la Ley de Propiedad Intelectual.",
+    "SFAC": "AA",
+    "DL_CON": "JUAN JOSE ALFONSO",
+    "FE_BARCODE": "*AA23060876*",
+    "AMTEL": "Tlfn. 958509010",
+    "TR2": {
+        "0": [
+            [
+                [
+                    9
+                ],
+                "RF/ITA/B-239:239:239/F-0:0:0"
+            ]
+        ]
+    },
+    "DL_POB": "ALFARA DEL PATRIARCA",
+    "CL_CDP": "46115",
     "lineas": [
         [
             " ",
@@ -300,58 +343,6 @@
             21.0
         ]
     ],
-    "DTO": "Retencion",
-    "CL_PROV": "VALENCIA",
-    "DL_DENO": "INFORTISA S.L.",
-    "DL_PAIS": "(ESPA\u00f1A)",
-    "BCH": [
-        [
-            "BBVA",
-            "BBVAESMMXX",
-            "0182-2359-06-0015004986",
-            "ES07"
-        ],
-        [
-            "Banco Santander Central Hispano",
-            "BSCHESMM",
-            "0049-2523-03-2814100046",
-            "ES98"
-        ],
-        [
-            "Bankinter",
-            "BKBKESMM ",
-            "0128-9479-43-0550028514",
-            "ES73"
-        ],
-        [
-            "La Caixa",
-            "CAIXESBB",
-            "2100-2559-58-0210025134",
-            "ES27"
-        ]
-    ],
-    "MSG_LPI": "El consumidor final tiene derecho a reclamar el reembolso de la compensacionequitativa por copia privada si cumple los requisitos establecidos en el articulo 25.8 deltexto refundido de la Ley de Propiedad Intelectual.",
-    "CL_ATT": "Att: ",
-    "SERIE": "AA",
-    "DL_PROV": "VALENCIA",
-    "DL_CON": "JUAN JOSE ALFONSO",
-    "FE_BARCODE": "*AA23060876*",
-    "DOC_DENF": "Fecha Factura",
-    "TR2": {
-        "0": [
-            [
-                [
-                    9
-                ],
-                "RF/ITA/B-239:239:239/F-0:0:0"
-            ]
-        ]
-    },
-    "DL_POB": "ALFARA DEL PATRIARCA",
-    "CL_CDP": "46115",
-    "VD": "364 VANESA GONZALEZ MOCHON",
-    "AMDOM": "P. METROPOLITANO, C/LOS VISOS, 14",
-    "AMTEL]": "Tlfn. 958509010",
     "FE_TTTE": "14,636.63",
     "FE_TTTIMP": [
         [
@@ -368,17 +359,12 @@
         ]
     ],
     "AMFAX": "Fax. 34-958509009",
-    "CL_NOM": "INFORTISA",
     "TRANS": "XPO LOGISITCS - NACIONALPALETS - Portes Pagados con cargo en factura, \n",
-    "CODFRA": "AA23060876",
-    "DL_DOM": "C/ MAESTRO SERRANO 4",
-    "AMNOM": "ALMACEN CENTRAL (MEGASUR)",
+    "DL_PROV": "VALENCIA",
+    "DOC_DENF": "Fecha Factura",
     "DOC_DENU": "FACTURA",
     "AMCDP": "18130 ESCUZAR( GRANADA )",
     "CL_PAIS": "(ESPA\u00f1A)",
-    "CL_CIF": "B46466421",
-    "VD_EXT": "3261",
-    "CL_DOM": "DEL POZO, 1",
     "SUPL": " ",
     "MON": "\u20ac",
     "FE_LNATT": [
