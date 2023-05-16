@@ -42,7 +42,8 @@
     "text1_atencion": "\u00a1\u00a1\u00a1ATENCI\u00d3N!!! Todo art\u00edculo que tenga las etiquetas  de N\u00ba de serie o de Garant\u00eda manipuladas, quitadas o deterioradas perder\u00e1 la garant\u00eda",
     "text2_atencion": "Para hacer efectiva la garant\u00eda  es imprescindible enviar junto con el articulo copia de la factura de compra, manuales y discos originales del mismo.",
     "fecha" :"Fecha",
-    "recopilacion":"Recopilacion",
-    "admisible":"Admisible",
-    "p_formulario":"Formulario de pago"
+    "recopilacion":"Documento",
+    "cobro":"Cobro",
+    "admisible":"Pte Pago",
+    "p_formulario":"Forma Pago"
 }

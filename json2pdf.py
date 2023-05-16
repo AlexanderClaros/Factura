@@ -302,7 +302,7 @@ fecha =cabecera['fecha']
 recopilacion =cabecera['recopilacion']
 admisible =cabecera['admisible']
 p_formulario =cabecera['p_formulario']
-
+cobro=cabecera['cobro']
 ancho,alto,=A4
 titulo=8
 negrita=5.8
@@ -317,6 +317,9 @@ for numero_tabla in range(numero):
     if numero_tabla<numero+1:
         c.setFillColor(aColor='lightblue')
         c.setStrokeColor(aColor='gray')
+        #imagen de la empresa
+        c.drawImage('logoMegasur.png',40,alto-95,250,70) 
+        
         #nombre documento
         c.roundRect(60,alto-114,170,20,3,stroke=1 ,fill=0)
         c.roundRect(60,alto-114,171,20,3,stroke=1 ,fill=0)
@@ -353,14 +356,14 @@ for numero_tabla in range(numero):
         writeString(c,302,alto,140,datos['CODALM'],titulo,'Helvetica')
         writeString(c,63,alto,155,vendedor,titulo)
         line=''
-        unidadeslinea=500
+        unidadeslinea=900
         unidades_en_linea=0
         for palabra in datos['VD'].split():
             unidades_palabra += medida_str(palabra)
             if unidades_en_linea + unidades_palabra < unidadeslinea:
                 unidades_en_linea += unidades_palabra
                 line += palabra+' '
-        writeString(c,106,alto,155,line,titulo,'Helvetica')
+        writeString(c,106,alto,155,line,6,'Helvetica')
         writeString(c,213,alto,155,ext_centralita,titulo)
         writeString(c,296,alto,155,datos['VD_EXT'],titulo,'Helvetica')
         # cuadro envio
@@ -393,7 +396,7 @@ for numero_tabla in range(numero):
         writeString(c,520,alto,138,'Pag. '+str(numero_tabla+1),titulo,'Helvetica')
         #lineas de datos fiscales
         c.saveState()
-        c.translate(30,190)
+        c.translate(40,155)
         c.rotate(90)
         writeString(c,0,0,0,datos['P_DFI'],5.8)
         writeString(c,90,0,10,datos['P_RGM'],5.8)
@@ -489,7 +492,7 @@ if numero_tabla<numero+1 and final==True:
         writeString(c,360,alto,620,check0(datos['FE_TTTIMP'][0][6]),titulo)
         writeString(c,408,alto,620,check0(datos['FE_TTTIMP'][0][7]),titulo)
         writeString(c,439,alto,620,check0(datos['FE_TTTIMP'][0][8]),titulo)
-        writeString(c,518,alto,620,check0(datos['FE_TTTIMP'][0][9]),9)
+        writeString(c,570-c.stringWidth(str(datos['FE_TTTIMP'][0][9])),alto,620,check0(datos['FE_TTTIMP'][0][9]),9)
         
     if len(datos['FE_TTTIMP'])== 2:
         c.roundRect(60,alto-624,520,40,0,stroke=1,fill=0)
@@ -524,7 +527,7 @@ if numero_tabla<numero+1 and final==True:
         writeString(c,360,alto,607,check0(datos['FE_TTTIMP'][0][6]),titulo,'Helvetica')
         writeString(c,408,alto,607,check0(datos['FE_TTTIMP'][0][7]),titulo,'Helvetica')
         writeString(c,439,alto,607,check0(datos['FE_TTTIMP'][0][8]),titulo,'Helvetica')
-        writeString(c,518,alto,607,check0(datos['FE_TTTIMP'][0][9]),9)
+        writeString(c,570-c.stringWidth(str(datos['FE_TTTIMP'][0][9])),alto,607,check0(datos['FE_TTTIMP'][0][9]),9)
         writeString(c,70,alto,618,check0(datos['FE_TTTIMP'][1][0]),titulo,'Helvetica')
         writeString(c,112,alto,618,check0(datos['FE_TTTIMP'][1][1]),titulo,'Helvetica')
         writeString(c,159,alto,618,check0(datos['FE_TTTIMP'][1][2]),titulo,'Helvetica')
@@ -534,7 +537,7 @@ if numero_tabla<numero+1 and final==True:
         writeString(c,360,alto,618,check0(datos['FE_TTTIMP'][1][6]),titulo,'Helvetica')
         writeString(c,408,alto,618,check0(datos['FE_TTTIMP'][1][7]),titulo,'Helvetica')
         writeString(c,439,alto,618,check0(datos['FE_TTTIMP'][1][8]),titulo,'Helvetica')
-        writeString(c,518,alto,618,check0(datos['FE_TTTIMP'][1][9]),9)
+        writeString(c,570-c.stringWidth(str(datos['FE_TTTIMP'][0][9])),alto,618,check0(datos['FE_TTTIMP'][1][9]),9)
     if len(datos['FE_TTTIMP'])== 3:
         c.roundRect(60,alto-630,520,40,0,stroke=1,fill=0)
         c.roundRect(60,alto-631,521,41,0,stroke=1,fill=0)
@@ -568,7 +571,7 @@ if numero_tabla<numero+1 and final==True:
         writeString(c,360,alto,607,check0(datos['FE_TTTIMP'][0][6]),titulo,'Helvetica')
         writeString(c,408,alto,607,check0(datos['FE_TTTIMP'][0][7]),titulo,'Helvetica')
         writeString(c,439,alto,607,check0(datos['FE_TTTIMP'][0][8]),titulo,'Helvetica')
-        writeString(c,518,alto,607,check0(datos['FE_TTTIMP'][0][9]),9)
+        writeString(c,570-c.stringWidth(str(datos['FE_TTTIMP'][0][9])),alto,607,check0(datos['FE_TTTIMP'][0][9]),9)
         writeString(c,70,alto,618,check0(datos['FE_TTTIMP'][1][0]),titulo,'Helvetica')
         writeString(c,112,alto,618,check0(datos['FE_TTTIMP'][1][1]),titulo,'Helvetica')
         writeString(c,159,alto,618,check0(datos['FE_TTTIMP'][1][2]),titulo,'Helvetica')
@@ -578,7 +581,7 @@ if numero_tabla<numero+1 and final==True:
         writeString(c,360,alto,618,check0(datos['FE_TTTIMP'][1][6]),titulo,'Helvetica')
         writeString(c,408,alto,618,check0(datos['FE_TTTIMP'][1][7]),titulo,'Helvetica')
         writeString(c,439,alto,618,check0(datos['FE_TTTIMP'][1][8]),titulo,'Helvetica')
-        writeString(c,518,alto,618,check0(datos['FE_TTTIMP'][1][9]),9)
+        writeString(c,570-c.stringWidth(str(datos['FE_TTTIMP'][0][9])),alto,618,check0(datos['FE_TTTIMP'][1][9]),9)
         writeString(c,70,alto,628,check0(datos['FE_TTTIMP'][2][0]),titulo,'Helvetica')
         writeString(c,112,alto,628,check0(datos['FE_TTTIMP'][2][1]),titulo,'Helvetica')
         writeString(c,159,alto,628,check0(datos['FE_TTTIMP'][2][2]),titulo,'Helvetica')
@@ -588,7 +591,7 @@ if numero_tabla<numero+1 and final==True:
         writeString(c,360,alto,628,check0(datos['FE_TTTIMP'][2][6]),titulo,'Helvetica')
         writeString(c,408,alto,628,check0(datos['FE_TTTIMP'][2][7]),titulo,'Helvetica')
         writeString(c,439,alto,628,check0(datos['FE_TTTIMP'][2][8]),titulo,'Helvetica')
-        writeString(c,518,alto,628,check0(datos['FE_TTTIMP'][2][9]),9)
+        writeString(c,570-c.stringWidth(str(datos['FE_TTTIMP'][0][9])),alto,628,check0(datos['FE_TTTIMP'][2][9]),9)
     # cuadro de importes
     c.roundRect(285,alto-663,100,30,0,stroke=1,fill=0)
     c.roundRect(285,alto-664,101,31,0,stroke=1,fill=0)
@@ -596,6 +599,8 @@ if numero_tabla<numero+1 and final==True:
     c.rect(328,alto-663,0,30)
     writeString(c,288,alto,644,f_ven,titulo)
     writeString(c,335,alto,644,importes2,titulo)
+    writeString(c,288,alto,660,'Prueba',titulo,'Helvetica')
+    writeString(c,335,alto,660,'Prueba',titulo,'Helvetica')
 
     # cuadro de total
     c.roundRect(395,alto-663,182,30,0,stroke=1,fill=0)
@@ -606,6 +611,8 @@ if numero_tabla<numero+1 and final==True:
     c.rect(523,alto-663,0,30)
     writeString(c,450,alto,644,r_financiero,titulo)
     writeString(c,530,alto,644,total,titulo)
+    writeString(c,450,alto,660,'Prueba',titulo,'Helvetica')
+    writeString(c,570-c.stringWidth(datos['FE_TTTE']),alto,660,datos['FE_TTTE'],9)
     # cuadro de datos bancarios
     c.roundRect(290,alto-684,290,14,0,stroke=1,fill=1)
     c.roundRect(290,alto-696,290,12,0,stroke=1,fill=0)
@@ -648,10 +655,15 @@ if numero_tabla<numero+1 and final==True:
     c.rect(170,alto-732,0,27)
     c.rect(207,alto-732,0,27)
     writeString(c,62,alto,711,recopilacion,5)
+    writeString(c,62,alto,718,'Prueba',5)
     writeString(c,102,alto,711,fecha,5)
-    writeString(c,130,alto,711,recopilacion,5)
+    writeString(c,102,alto,718,'Prueba',5)
+    writeString(c,130,alto,711,cobro,5)
+    writeString(c,130,alto,718,'Prueba',5)
     writeString(c,172,alto,711,admisible,5)
+    writeString(c,172,alto,718,'Prueba',5)
     writeString(c,210,alto,711,p_formulario,5)
+    writeString(c,210,alto,718,'Prueba',5)
     # texto de reemboloso
     writeString(c,40,alto,745,datos['MSG_LPI'].replace('\n', ''),5.3)
     # textos de pie de pagina

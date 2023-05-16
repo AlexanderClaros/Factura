@@ -44,6 +44,7 @@ datos={
     "text2_atencion":'Pour faire effective  la garantie est indispensable envoyer avec I´ article la copie de la´achat, les manuels et les disques originals.',
     "fecha" :"Date",
     "recopilacion":"Encaissement",
+    "cobro":"Cobro",
     "admisible":"Recevable",
     "p_formulario":"Formularie de Paiement"
 }
