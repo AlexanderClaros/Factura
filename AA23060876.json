@@ -1,7 +1,7 @@
 {
-    "CODALM": "01",
+    "TXTPIE1": "Cualquier incidencia en la recepci\u00f3n de este env\u00edo tanto por mercanc\u00eda faltante como por \n\t\t\t\t\t\testar da\u00f1ada/golpeada debe ser comunicada a Megasur en el plazo m\u00e1ximo de 24 horas, \n\t\t\t\t\t\tcaso contrario Megasur/Transportista no se har\u00e1 cargo de la misma. Al firmar el albar\u00e1n \n\t\t\t\t\t\tdel transportista indique cualquier anomal\u00eda: cajas abiertas, golpeadas, reprecintadas, \n\t\t\t\t\t\tfalta de bultos, etc. El no indicar esta informaci\u00f3n en el albar\u00e1n de transporte anular\u00e1 la \n\t\t\t\t\t\tposibilidad de reclamar cualquier falta y/o da\u00f1o de la mercanc\u00eda.",
     "FE_DCOBS": [],
-    "CL_DENO": "INFORTISA S.L.",
+    "TXTPIE2": "El indicar \"Pte. de revisar\" en el albar\u00e1n de entrega no tiene ninguna validez legal.\n\t\t\t\t\t\tEn caso de falta o da\u00f1o en alguna mercanc\u00eda nunca tire los embalajes y conserve las etiquetas de \n\t\t\t\t\t\ttransporte pegadas en las cajas, para cualquier reclamaci\u00f3n le ser\u00e1n solicitadas dichas etiquetas y \n\t\t\t\t\t\tlas cajas. La notificaci\u00f3n debe realizarse a trav\u00e9s de la web de megasur \n\t\t\t\t\t\t(www.megasur.es/soporte/incidencias/).\n\t\t\t\t\t\tTodos los pagos por transferencias bancarias seran con los gastos a cargo del Remitente",
     "CL_POB": "ALFARA DEL PATRIARCA",
     "SFAC": "AA",
     "DL_CDP": "46115",
@@ -300,8 +300,9 @@
             21.0
         ]
     ],
-    "DTO": "Retencion",
+    "CODALM": "01",
     "CL_PROV": "VALENCIA",
+    "TRANS": "XPO LOGISITCS - NACIONALPALETS - Portes Pagados con cargo en factura, \n",
     "DL_DENO": "INFORTISA S.L.",
     "DL_PAIS": "(ESPA\u00f1A)",
     "BCH": [
@@ -331,7 +332,7 @@
         ]
     ],
     "MSG_LPI": "El consumidor final tiene derecho a reclamar el reembolso de la compensacionequitativa por copia privada si cumple los requisitos establecidos en el articulo 25.8 deltexto refundido de la Ley de Propiedad Intelectual.",
-    "CL_ATT": "Att: ",
+    "CL_DENO": "INFORTISA S.L.",
     "SERIE": "AA",
     "DL_PROV": "VALENCIA",
     "DL_CON": "JUAN JOSE ALFONSO",
@@ -347,9 +348,11 @@
             ]
         ]
     },
-    "DL_POB": "ALFARA DEL PATRIARCA",
+    "CL_ATT": "Att: ",
     "CL_CDP": "46115",
+    "DTO": "Retencion",
     "VD": "364 VANESA GONZALEZ MOCHON",
+    "P_RGM": "Inscrita en el Reg. Merc. de Granada tomo 480, folio 37, hoja N\u00ba GR3358 inscripci\u00f3n 1\u00aa C.I.F.: B-18.314.112    Productor de Productos n\u00ba ENV/2023/000006339",
     "AMDOM": "P. METROPOLITANO, C/LOS VISOS, 14",
     "AMTEL]": "Tlfn. 958509010",
     "FE_TTTE": "14,636.63",
@@ -369,13 +372,14 @@
     ],
     "AMFAX": "Fax. 34-958509009",
     "CL_NOM": "INFORTISA",
-    "TRANS": "XPO LOGISITCS - NACIONALPALETS - Portes Pagados con cargo en factura, \n",
+    "P_DFI": "Datos Fiscales:  Inform\u00e1tica Megasur S.L. B-18.314.112 EORI / VAT Number ESB18314112 Direcc: PQ. Metropolitano, C\\ Los Visos, 14 C.P. 18130 Escuzar (Granada) Spain Tlfno: 958 50 90 10 Fax: 958 50 90 09",
     "CODFRA": "AA23060876",
     "DL_DOM": "C/ MAESTRO SERRANO 4",
     "AMNOM": "ALMACEN CENTRAL (MEGASUR)",
     "DOC_DENU": "FACTURA",
     "AMCDP": "18130 ESCUZAR( GRANADA )",
-    "CL_PAIS": "(ESPA\u00f1A)",
+    "DL_POB": "ALFARA DEL PATRIARCA",
+    "FP_DENO": "TRANSFERENCIA POSTERIOR AL ENVIO",
     "CL_CIF": "B46466421",
     "VD_EXT": "3261",
     "CL_DOM": "DEL POZO, 1",
@@ -673,5 +677,6 @@
             21.0
         ]
     ],
+    "CL_PAIS": "(ESPA\u00f1A)",
     "DOC_DENL": "N\u00ba Factura"
 }
