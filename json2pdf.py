@@ -303,6 +303,7 @@ recopilacion =cabecera['recopilacion']
 admisible =cabecera['admisible']
 p_formulario =cabecera['p_formulario']
 cobro=cabecera['cobro']
+suplido=cabecera["suplido"]
 ancho,alto,=A4
 titulo=8
 negrita=5.8
@@ -599,8 +600,9 @@ if numero_tabla<numero+1 and final==True:
     c.rect(328,alto-663,0,30)
     writeString(c,288,alto,644,f_ven,titulo)
     writeString(c,335,alto,644,importes2,titulo)
-    writeString(c,288,alto,660,'Prueba',titulo,'Helvetica')
-    writeString(c,335,alto,660,'Prueba',titulo,'Helvetica')
+    for pos,dato in enumerate(datos['FE_VTOS']):
+        writeString(c,288,alto,660+pos*10,str(dato[0]),titulo,'Helvetica')
+        writeString(c,335,alto,660+pos*10,str(dato[1]),titulo,'Helvetica')
 
     # cuadro de total
     c.roundRect(395,alto-663,182,30,0,stroke=1,fill=0)
@@ -609,9 +611,11 @@ if numero_tabla<numero+1 and final==True:
     c.roundRect(395,alto-647,182,14,0,stroke=1,fill=1)
     c.rect(446,alto-663,0,30)
     c.rect(523,alto-663,0,30)
+    writeString(c,400,alto,644,suplido,titulo)
     writeString(c,450,alto,644,r_financiero,titulo)
-    writeString(c,530,alto,644,total,titulo)
-    writeString(c,450,alto,660,'Prueba',titulo,'Helvetica')
+    writeString(c,530,alto,644,total+' '+datos['MON'],titulo)
+    writeString(c,400,alto,660,datos['SUPL'],titulo)
+    writeString(c,450,alto,660,check0(datos['FE_GFIN']),titulo,'Helvetica')
     writeString(c,570-c.stringWidth(datos['FE_TTTE']),alto,660,datos['FE_TTTE'],9)
     # cuadro de datos bancarios
     c.roundRect(290,alto-684,290,14,0,stroke=1,fill=1)
@@ -655,15 +659,16 @@ if numero_tabla<numero+1 and final==True:
     c.rect(170,alto-732,0,27)
     c.rect(207,alto-732,0,27)
     writeString(c,62,alto,711,recopilacion,5)
-    writeString(c,62,alto,718,'Prueba',5)
     writeString(c,102,alto,711,fecha,5)
-    writeString(c,102,alto,718,'Prueba',5)
     writeString(c,130,alto,711,cobro,5)
-    writeString(c,130,alto,718,'Prueba',5)
     writeString(c,172,alto,711,admisible,5)
-    writeString(c,172,alto,718,'Prueba',5)
     writeString(c,210,alto,711,p_formulario,5)
-    writeString(c,210,alto,718,'Prueba',5)
+    for pos,dato in enumerate(datos['FE_DCOBS']):
+        writeString(c,62,alto,718+pos*10,dato[0],5)
+        writeString(c,102,alto,718+pos*10,str(dato[1]),5)
+        writeString(c,130,alto,718+pos*10,str(dato[2]),5)
+        writeString(c,172,alto,718+pos*10,str(dato[3]),5)
+        writeString(c,210,alto,718+pos*10,dato[4],5)
     # texto de reemboloso
     writeString(c,40,alto,745,datos['MSG_LPI'].replace('\n', ''),5.3)
     # textos de pie de pagina

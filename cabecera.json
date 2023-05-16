@@ -34,7 +34,7 @@
     "f_ven": "Fecha Vto",
     "importes2": "Importes",
     "r_financiero": "Rec.Financiero",
-    "total": "Total \u20ac",
+    "total": "Total",
     "dat_banco": "Datos Bancarios Transfer",
     "swift": "Swift",
     "iban": "Iban",
@@ -45,5 +45,6 @@
     "recopilacion":"Documento",
     "cobro":"Cobro",
     "admisible":"Pte Pago",
-    "p_formulario":"Forma Pago"
+    "p_formulario":"Forma Pago",
+    "suplido":"Suplido"
 }

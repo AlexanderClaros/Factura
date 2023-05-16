@@ -1,18 +1,30 @@
 {
     "TXTPIE1": "Cualquier incidencia en la recepci\u00f3n de este env\u00edo tanto por mercanc\u00eda faltante como por \n\t\t\t\t\t\testar da\u00f1ada/golpeada debe ser comunicada a Megasur en el plazo m\u00e1ximo de 24 horas, \n\t\t\t\t\t\tcaso contrario Megasur/Transportista no se har\u00e1 cargo de la misma. Al firmar el albar\u00e1n \n\t\t\t\t\t\tdel transportista indique cualquier anomal\u00eda: cajas abiertas, golpeadas, reprecintadas, \n\t\t\t\t\t\tfalta de bultos, etc. El no indicar esta informaci\u00f3n en el albar\u00e1n de transporte anular\u00e1 la \n\t\t\t\t\t\tposibilidad de reclamar cualquier falta y/o da\u00f1o de la mercanc\u00eda.",
-    "FE_DCOBS": [],
+    "FE_VTOS": [
+        [
+            8691,
+            12.22
+        ]
+    ],
     "TXTPIE2": "El indicar \"Pte. de revisar\" en el albar\u00e1n de entrega no tiene ninguna validez legal.\n\t\t\t\t\t\tEn caso de falta o da\u00f1o en alguna mercanc\u00eda nunca tire los embalajes y conserve las etiquetas de \n\t\t\t\t\t\ttransporte pegadas en las cajas, para cualquier reclamaci\u00f3n le ser\u00e1n solicitadas dichas etiquetas y \n\t\t\t\t\t\tlas cajas. La notificaci\u00f3n debe realizarse a trav\u00e9s de la web de megasur \n\t\t\t\t\t\t(www.megasur.es/soporte/incidencias/).\n\t\t\t\t\t\tTodos los pagos por transferencias bancarias seran con los gastos a cargo del Remitente",
-    "CL_POB": "ALFARA DEL PATRIARCA",
-    "SFAC": "AA",
-    "DL_CDP": "46115",
-    "FECFRA": "09/05/2023",
-    "CCL": "000120",
-    "PDTO": "% R.IRPF",
+    "CL_POB": "GRANADA",
+    "FECFRA": "12/05/2023",
+    "CCL": "092155",
+    "FE_GFIN": 0.0,
+    "DL_DENO":"",
+    "DL_POB":"",
+    "DL_PROV":"",
+    "DL_CDP":"",
+    "DL_PAIS":"",
+    "DL_CON":"",
+    "DL_DOM":"",
+    "MSG_LPI":"",
+    
     "lineas": [
         [
             " ",
             [
-                "Pedido n\u00ba 23BVU1, Albaran n\u00ba 23BLOH de 09/05/2023 (XPO LOGISITCS)"
+                "Pedido n\u00ba 23BYME, Albaran n\u00ba 23BNZU de 12/05/2023 ()"
             ],
             "",
             0,
@@ -22,146 +34,21 @@
             0
         ],
         [
-            "&.7>4ZB95A",
+            "&.7>DSP0000006555",
             [
-                "IMPRESORA HP LASER COLOR 150NW A4 /18PPM /64MB /USB /WIFI"
+                "CABLE DISPLAYPORT A VGA NANOCABLE 2M NEGRO/ MACHO-MACHO"
             ],
-            "365 d\u00edas",
-            20.0,
-            184.24,
-            0.0,
-            184.24,
-            3684.8
-        ],
-        [
-            "",
-            [
-                "&.7/rf>Part Number: 4ZB95A#B19  EAN: 193015507128"
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "",
-            [
-                "&.7/rf>N\u00fameros de Serie: CNB1R2JCVG CNB1R2JCVC",
-                "&.7/rf>CNB1R2JCVK CNB1R2JCVJ CNB1R2JCVH CNB1R2JCVF CNB1R2JCVQ",
-                "&.7/rf>CNB1R2JCVM CNB1R2JCW6 CNB1R2JCVV CNB1R2JCVR CNB1R2JCW7",
-                "&.7/rf>CNB1R2JCVD CNB1R2JCV9 CNB1R2JCV4 CNB1R2JCV8 CNB1R2JCV2",
-                "&.7/rf>CNB1R2JCV6 CNB1R2JCV1 CNB1R2JCV5 "
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "&.7>LPI-IMPL",
-            [
-                "LPI IMPRESORAS LASER R/D 12/2017"
-            ],
-            "",
-            20.0,
-            4.5,
-            0.0,
-            4.5,
-            90.0
-        ],
-        [
-            "&.7>4ZB97A",
-            [
-                "MULTIFUNCION HP LASER COLOR LASERJET MFP 179FNW FAX/ A4/ 18PPM/ 128MB/ USB/ RED/ WIFI"
-            ],
-            "1095 d\u00edas",
-            5.0,
-            256.04,
-            0.0,
-            256.04,
-            1280.2
-        ],
-        [
-            "",
-            [
-                "&.7/rf>Part Number: 4ZB97A#B19  EAN: 193015507388"
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "",
-            [
-                "&.7/rf>N\u00fameros de Serie: CNB1R1D334 CNB1R1D333",
-                "&.7/rf>CNB1R1D33B CNB1R1D33D CNB1R1D33J "
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "&.7>LPI-MFPL19",
-            [
-                "LPI MULTIFUNCIONAL DE 10 - 19 P\u00c1GINAS POR M\u00cdNUTO LASER R/D 12/2017"
-            ],
-            "",
-            5.0,
-            5.25,
-            0.0,
-            5.25,
-            26.25
-        ],
-        [
-            "&.7>MGS0000014895",
-            [
-                "CARTUCHO TINTA CANON PG-540L NEGRO"
-            ],
-            "1095 d\u00edas",
-            100.0,
-            17.301,
+            "730 d\u00edas",
             1.0,
-            17.128,
-            1712.8
-        ],
-        [
-            "",
-            [
-                "&.7/rf>Part Number: 5224B001  EAN: 4549292192025"
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "&.7>MGS0000009445",
-            [
-                "IMPRESORA HP LASER MONOCROMO LASERJET M110WE HP+ 20PPM/ WIFI"
-            ],
-            "1095 d\u00edas",
-            20.0,
-            65.8,
+            10.1,
             0.0,
-            65.8,
-            1316.0
+            10.1,
+            10.1
         ],
         [
             "",
             [
-                "&.7/rf>Part Number: 7MD66E  EAN: 195122067014"
+                "&.7/rf>Part Number: 10.15.4402  EAN: 8433281008670"
             ],
             "",
             0,
@@ -169,142 +56,20 @@
             0,
             0,
             0
-        ],
-        [
-            "",
-            [
-                "&.7/rf>N\u00fameros de Serie: VNCZ204944 VNCZ204923",
-                "&.7/rf>VNCZ204951 VNCZ204949 VNCZ204920 VNCZ204908 VNCZ204929",
-                "&.7/rf>VNCZ204941 VNCZ204933 VNCZ204922 VNCZ204930 VNCZ204931",
-                "&.7/rf>VNCZ204924 VNCZ204880 VNCZ204960 VNCZ204925 VNCZ204947",
-                "&.7/rf>VNCZ204955 VNCZ204954 VNCZ167280 "
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "&.7>LPI-IM39",
-            [
-                "LPI IMPRESORA MONOFUNCIONAL 1 - 39 PPM R/D 12/2017"
-            ],
-            "",
-            20.0,
-            4.5,
-            0.0,
-            4.5,
-            90.0
-        ],
-        [
-            "&.7>MGS0000005753",
-            [
-                "IMPRESORA HP LASER MONOCROMO LASERJET M209DW A4/ 29PPM/ 64MB/ USB/ RED/ WIFI/ BT/ DUPLEX"
-            ],
-            "365 d\u00edas",
-            19.0,
-            129.2,
-            0.0,
-            129.2,
-            2454.8
-        ],
-        [
-            "",
-            [
-                "&.7/rf>Part Number: 6GW62F  EAN: 194850664267"
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "",
-            [
-                "&.7/rf>N\u00fameros de Serie: CNFG602032 CNFG601767",
-                "&.7/rf>CNFG601937 CNFG601628 CNFG601719 CNFG602034 CNFG601774",
-                "&.7/rf>CNFG601711 CNFG601704 CNFG601901 CNFG602026 CNFG601779",
-                "&.7/rf>CNFG601702 CNFG601915 CNFG601580 CNFG602031 CNFG601786",
-                "&.7/rf>CNFG601899 CNFG602042 "
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "&.7>LPI-IMPL",
-            [
-                "LPI IMPRESORAS LASER R/D 12/2017"
-            ],
-            "",
-            19.0,
-            4.5,
-            0.0,
-            4.5,
-            85.5
-        ],
-        [
-            "&.7>7KW72A",
-            [
-                "MULTIFUNCION HP LASER COLOR LASERJET PRO M282NW A4/ 21PPM/ 256MB/ USB/ RED/ WIFI/ WIFI DIRECT"
-            ],
-            "365 d\u00edas",
-            4.0,
-            333.76,
-            0.0,
-            333.76,
-            1335.04
-        ],
-        [
-            "",
-            [
-                "&.7/rf>EAN: 193905486571"
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "",
-            [
-                "&.7/rf>N\u00fameros de Serie: CNBRQCW50G CNBRQCW4YV",
-                "&.7/rf>CNBRR118KX CNBRR118K9 "
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "&.7>LPI-IMUL",
-            [
-                "LPI MULTIFUNCIONALES L\u00e1SER PARA IMPRESI\u00f3N COPIA Y ESCANEO R/D 12/2017"
-            ],
-            "",
-            4.0,
-            5.25,
-            0.0,
-            5.25,
-            21.0
         ]
     ],
-    "CODALM": "01",
-    "CL_PROV": "VALENCIA",
-    "TRANS": "XPO LOGISITCS - NACIONALPALETS - Portes Pagados con cargo en factura, \n",
-    "DL_DENO": "INFORTISA S.L.",
-    "DL_PAIS": "(ESPA\u00f1A)",
+    "CODALM": "04",
+    "CL_PROV": "GRANADA",
+    "FE_DCOBS": [
+        [
+            "23AEKD",
+            8691,
+            12.22,
+            -1.7763568394002505e-15,
+            "TARJETA"
+        ]
+    ],
+    "TRANS": "",
     "BCH": [
         [
             "BBVA",
@@ -331,12 +96,10 @@
             "ES27"
         ]
     ],
-    "MSG_LPI": "El consumidor final tiene derecho a reclamar el reembolso de la compensacionequitativa por copia privada si cumple los requisitos establecidos en el articulo 25.8 deltexto refundido de la Ley de Propiedad Intelectual.",
-    "CL_DENO": "INFORTISA S.L.",
+    "CL_DENO": "VENTAS VARIAS",
     "SERIE": "AA",
-    "DL_PROV": "VALENCIA",
-    "DL_CON": "JUAN JOSE ALFONSO",
-    "FE_BARCODE": "*AA23060876*",
+    "SFAC": "AA",
+    "FE_BARCODE": "*AA23062215*",
     "DOC_DENF": "Fecha Factura",
     "TR2": {
         "0": [
@@ -349,47 +112,46 @@
         ]
     },
     "CL_ATT": "Att: ",
-    "CL_CDP": "46115",
+    "CL_CDP": "18004",
     "DTO": "Retencion",
-    "VD": "364 VANESA GONZALEZ MOCHON",
+    "VD": "648 OMAR ALVAREZ MOLEON",
     "P_RGM": "Inscrita en el Reg. Merc. de Granada tomo 480, folio 37, hoja N\u00ba GR3358 inscripci\u00f3n 1\u00aa C.I.F.: B-18.314.112    Productor de Productos n\u00ba ENV/2023/000006339",
-    "AMDOM": "P. METROPOLITANO, C/LOS VISOS, 14",
-    "AMTEL]": "Tlfn. 958509010",
-    "FE_TTTE": "14,636.63",
+    "AMDOM": "C/CHUECA 5, BAJO  y C/MAESTRO VIVES 6",
+    "AMTEL]": "Tlfn. 958521522/ SAT 958-251363",
+    "FE_TTTE": "12.22",
     "FE_TTTIMP": [
         [
-            12096.39,
+            10.1,
             0.0,
             0.0,
             0.0,
-            12096.39,
+            10.1,
             21.0,
-            2540.24,
+            2.12,
             0,
             0.0,
-            14636.63
+            12.219999999999999
         ]
     ],
-    "AMFAX": "Fax. 34-958509009",
-    "CL_NOM": "INFORTISA",
+    "AMFAX": "Fax. 958252636",
+    "CL_NOM": "",
     "P_DFI": "Datos Fiscales:  Inform\u00e1tica Megasur S.L. B-18.314.112 EORI / VAT Number ESB18314112 Direcc: PQ. Metropolitano, C\\ Los Visos, 14 C.P. 18130 Escuzar (Granada) Spain Tlfno: 958 50 90 10 Fax: 958 50 90 09",
-    "CODFRA": "AA23060876",
-    "DL_DOM": "C/ MAESTRO SERRANO 4",
-    "AMNOM": "ALMACEN CENTRAL (MEGASUR)",
+    "CODFRA": "AA23062215",
+    "AMNOM": "CHUECA MERCANCIAS",
     "DOC_DENU": "FACTURA",
-    "AMCDP": "18130 ESCUZAR( GRANADA )",
-    "DL_POB": "ALFARA DEL PATRIARCA",
-    "FP_DENO": "TRANSFERENCIA POSTERIOR AL ENVIO",
-    "CL_CIF": "B46466421",
-    "VD_EXT": "3261",
-    "CL_DOM": "DEL POZO, 1",
+    "AMCDP": "18004 GRANADA( GRANADA )",
+    "FP_DENO": "TARJETA DE CREDITO",
+    "CL_CIF": "",
+    "VD_EXT": "",
+    "CL_DOM": "",
+    "PDTO": "% R.IRPF",
     "SUPL": " ",
     "MON": "\u20ac",
     "FE_LNATT": [
         [
             " ",
             [
-                "Pedido n\u00ba 23BVU1, Albaran n\u00ba 23BLOH de 09/05/2023 (XPO LOGISITCS)"
+                "Pedido n\u00ba 23BYME, Albaran n\u00ba 23BNZU de 12/05/2023 ()"
             ],
             "",
             0,
@@ -399,146 +161,21 @@
             0
         ],
         [
-            "&.7>4ZB95A",
+            "&.7>DSP0000006555",
             [
-                "IMPRESORA HP LASER COLOR 150NW A4 /18PPM /64MB /USB /WIFI"
+                "CABLE DISPLAYPORT A VGA NANOCABLE 2M NEGRO/ MACHO-MACHO"
             ],
-            "365 d\u00edas",
-            20.0,
-            184.24,
-            0.0,
-            184.24,
-            3684.8
-        ],
-        [
-            "",
-            [
-                "&.7/rf>Part Number: 4ZB95A#B19  EAN: 193015507128"
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "",
-            [
-                "&.7/rf>N\u00fameros de Serie: CNB1R2JCVG CNB1R2JCVC",
-                "&.7/rf>CNB1R2JCVK CNB1R2JCVJ CNB1R2JCVH CNB1R2JCVF CNB1R2JCVQ",
-                "&.7/rf>CNB1R2JCVM CNB1R2JCW6 CNB1R2JCVV CNB1R2JCVR CNB1R2JCW7",
-                "&.7/rf>CNB1R2JCVD CNB1R2JCV9 CNB1R2JCV4 CNB1R2JCV8 CNB1R2JCV2",
-                "&.7/rf>CNB1R2JCV6 CNB1R2JCV1 CNB1R2JCV5 "
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "&.7>LPI-IMPL",
-            [
-                "LPI IMPRESORAS LASER R/D 12/2017"
-            ],
-            "",
-            20.0,
-            4.5,
-            0.0,
-            4.5,
-            90.0
-        ],
-        [
-            "&.7>4ZB97A",
-            [
-                "MULTIFUNCION HP LASER COLOR LASERJET MFP 179FNW FAX/ A4/ 18PPM/ 128MB/ USB/ RED/ WIFI"
-            ],
-            "1095 d\u00edas",
-            5.0,
-            256.04,
-            0.0,
-            256.04,
-            1280.2
-        ],
-        [
-            "",
-            [
-                "&.7/rf>Part Number: 4ZB97A#B19  EAN: 193015507388"
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "",
-            [
-                "&.7/rf>N\u00fameros de Serie: CNB1R1D334 CNB1R1D333",
-                "&.7/rf>CNB1R1D33B CNB1R1D33D CNB1R1D33J "
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "&.7>LPI-MFPL19",
-            [
-                "LPI MULTIFUNCIONAL DE 10 - 19 P\u00c1GINAS POR M\u00cdNUTO LASER R/D 12/2017"
-            ],
-            "",
-            5.0,
-            5.25,
-            0.0,
-            5.25,
-            26.25
-        ],
-        [
-            "&.7>MGS0000014895",
-            [
-                "CARTUCHO TINTA CANON PG-540L NEGRO"
-            ],
-            "1095 d\u00edas",
-            100.0,
-            17.301,
+            "730 d\u00edas",
             1.0,
-            17.128,
-            1712.8
-        ],
-        [
-            "",
-            [
-                "&.7/rf>Part Number: 5224B001  EAN: 4549292192025"
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "&.7>MGS0000009445",
-            [
-                "IMPRESORA HP LASER MONOCROMO LASERJET M110WE HP+ 20PPM/ WIFI"
-            ],
-            "1095 d\u00edas",
-            20.0,
-            65.8,
+            10.1,
             0.0,
-            65.8,
-            1316.0
+            10.1,
+            10.1
         ],
         [
             "",
             [
-                "&.7/rf>Part Number: 7MD66E  EAN: 195122067014"
+                "&.7/rf>Part Number: 10.15.4402  EAN: 8433281008670"
             ],
             "",
             0,
@@ -546,135 +183,6 @@
             0,
             0,
             0
-        ],
-        [
-            "",
-            [
-                "&.7/rf>N\u00fameros de Serie: VNCZ204944 VNCZ204923",
-                "&.7/rf>VNCZ204951 VNCZ204949 VNCZ204920 VNCZ204908 VNCZ204929",
-                "&.7/rf>VNCZ204941 VNCZ204933 VNCZ204922 VNCZ204930 VNCZ204931",
-                "&.7/rf>VNCZ204924 VNCZ204880 VNCZ204960 VNCZ204925 VNCZ204947",
-                "&.7/rf>VNCZ204955 VNCZ204954 VNCZ167280 "
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "&.7>LPI-IM39",
-            [
-                "LPI IMPRESORA MONOFUNCIONAL 1 - 39 PPM R/D 12/2017"
-            ],
-            "",
-            20.0,
-            4.5,
-            0.0,
-            4.5,
-            90.0
-        ],
-        [
-            "&.7>MGS0000005753",
-            [
-                "IMPRESORA HP LASER MONOCROMO LASERJET M209DW A4/ 29PPM/ 64MB/ USB/ RED/ WIFI/ BT/ DUPLEX"
-            ],
-            "365 d\u00edas",
-            19.0,
-            129.2,
-            0.0,
-            129.2,
-            2454.8
-        ],
-        [
-            "",
-            [
-                "&.7/rf>Part Number: 6GW62F  EAN: 194850664267"
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "",
-            [
-                "&.7/rf>N\u00fameros de Serie: CNFG602032 CNFG601767",
-                "&.7/rf>CNFG601937 CNFG601628 CNFG601719 CNFG602034 CNFG601774",
-                "&.7/rf>CNFG601711 CNFG601704 CNFG601901 CNFG602026 CNFG601779",
-                "&.7/rf>CNFG601702 CNFG601915 CNFG601580 CNFG602031 CNFG601786",
-                "&.7/rf>CNFG601899 CNFG602042 "
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "&.7>LPI-IMPL",
-            [
-                "LPI IMPRESORAS LASER R/D 12/2017"
-            ],
-            "",
-            19.0,
-            4.5,
-            0.0,
-            4.5,
-            85.5
-        ],
-        [
-            "&.7>7KW72A",
-            [
-                "MULTIFUNCION HP LASER COLOR LASERJET PRO M282NW A4/ 21PPM/ 256MB/ USB/ RED/ WIFI/ WIFI DIRECT"
-            ],
-            "365 d\u00edas",
-            4.0,
-            333.76,
-            0.0,
-            333.76,
-            1335.04
-        ],
-        [
-            "",
-            [
-                "&.7/rf>EAN: 193905486571"
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "",
-            [
-                "&.7/rf>N\u00fameros de Serie: CNBRQCW50G CNBRQCW4YV",
-                "&.7/rf>CNBRR118KX CNBRR118K9 "
-            ],
-            "",
-            0,
-            0,
-            0,
-            0,
-            0
-        ],
-        [
-            "&.7>LPI-IMUL",
-            [
-                "LPI MULTIFUNCIONALES L\u00e1SER PARA IMPRESI\u00f3N COPIA Y ESCANEO R/D 12/2017"
-            ],
-            "",
-            4.0,
-            5.25,
-            0.0,
-            5.25,
-            21.0
         ]
     ],
     "CL_PAIS": "(ESPA\u00f1A)",
