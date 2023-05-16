@@ -16,6 +16,7 @@ def check0 (dato):
         return ''
     else:
         return str(dato)
+
 UNIDADES_MAXIMAS_POR_LINEA = 112
 UNIDADES_MAXIMAS_POR_LINEA_NEGRITA = 125
 
@@ -41,6 +42,7 @@ def medida_str(texto):
     for letra in texto:
         unidades_palabra += medidas[letra]
     return unidades_palabra
+
 
 def obtener_codigo(linea, texto_liena):
     if linea[1].startswith(texto_liena[:-1]) and linea[0] != '' and linea[0] != ' ':
@@ -209,6 +211,34 @@ for linea in datos['lineas']:
                     contador_lineas_cada_tabla = 1
                     contador_tablas += 1
 
+def dividir_texto_por_ancho(texto, ancho_maximo):
+    # Inicializar variables
+    resultado = []
+    oracion_actual = ''
+    ancho_actual = 0
+
+
+    # Recorrer todas las palabras del texto
+    for palabra in texto.split():
+        ancho_palabra = c.stringWidth(palabra)
+
+        # Si la palabra cabe en la oración actual, añadirla a la oración actual y actualizar el ancho actual
+        if ancho_actual + ancho_palabra <= ancho_maximo:
+            if oracion_actual:
+                oracion_actual += ' '
+            oracion_actual += palabra
+            ancho_actual += ancho_palabra
+        # Si la palabra no cabe en la oración actual, guardar la oración actual y comenzar una nueva oración
+        else:
+            resultado.append(oracion_actual)
+            oracion_actual = palabra
+            ancho_actual = ancho_palabra
+
+    # Añadir la última oración al listado de oraciones
+    resultado.append(oracion_actual)
+
+    return resultado
+
 ##############################################
 
 def writeString(c,x,alto,y,text,size,font='Helvetica-Bold'):
@@ -284,7 +314,7 @@ numero=contador_tablas
 final=False
 total_unidades = 0
 for numero_tabla in range(numero):
-    if numero_tabla<4:
+    if numero_tabla<numero+1:
         c.setFillColor(aColor='lightblue')
         c.setStrokeColor(aColor='gray')
         #nombre documento
@@ -345,11 +375,11 @@ for numero_tabla in range(numero):
         # cuadro datos de remitente
         c.roundRect(350,alto-125,205,73,0,stroke=1,fill=0)
         c.roundRect(350,alto-126,206,74,0,stroke=1,fill=0)
-        writeString(c,355,alto,60,datos["AMNOM"],titulo,'Helvetica')#datos['AM_NOM']
-        writeString(c,550-len(datos["AMDOM"])*4.7,alto,75,datos["AMDOM"],titulo)#datos['AM_DOM']
-        writeString(c,550-len(datos['AMCDP'])*4.7,alto,90,datos['AMCDP'],titulo)
-        writeString(c,550-len(datos['AMFAX'])*4.2,alto,105,datos['AMFAX'],titulo)
-        writeString(c,550-len(datos['AMFAX'])*4.2,alto,120,datos['AMFAX'],titulo)
+        writeString(c,550-c.stringWidth(datos["AMNOM"]),alto,62,datos["AMNOM"],titulo,'Helvetica')
+        writeString(c,550-c.stringWidth(datos["AMDOM"]),alto,75,datos["AMDOM"],titulo)
+        writeString(c,550-c.stringWidth(datos['AMCDP']),alto,90,datos['AMCDP'],titulo)
+        writeString(c,550-c.stringWidth(datos['AMFAX']),alto,105,datos['AMFAX'],titulo)
+        writeString(c,550-c.stringWidth(datos['AMFAX']),alto,120,datos['AMFAX'],titulo)
         # cuadro datos de destinatario
         c.roundRect(350,alto-222,205,80,0,stroke=1,fill=0)
         c.roundRect(350,alto-223,206,81,0,stroke=1,fill=0)
@@ -361,6 +391,13 @@ for numero_tabla in range(numero):
         writeString(c,352,alto,202,datos['CL_PROV']+' '+ datos['CL_PAIS'],titulo,'Helvetica')
         writeString(c,352,alto,215,datos['CL_ATT'],titulo,'Helvetica')#datos['CL_ATT']
         writeString(c,520,alto,138,'Pag. '+str(numero_tabla+1),titulo,'Helvetica')
+        #lineas de datos fiscales
+        c.saveState()
+        c.translate(30,190)
+        c.rotate(90)
+        writeString(c,0,0,0,datos['P_DFI'],5.8)
+        writeString(c,90,0,10,datos['P_RGM'],5.8)
+        c.restoreState()
         # cuadro de la tabla
         c.roundRect(60,alto-560,520,330,0,stroke=1,fill=0)
         c.roundRect(60,alto-244,520,14,0,stroke=1,fill=1)
@@ -413,7 +450,7 @@ for numero_tabla in range(numero):
         if numero_tabla!=numero - 1:
             c.showPage()
     final=True
-if numero_tabla<4 and final==True:
+if numero_tabla<numero+1 and final==True:
     # texto de Atencion
     writeString(c,90,alto,570,text_aten1,6)
     writeString(c,90,alto,579,text_aten2,6)
@@ -452,7 +489,7 @@ if numero_tabla<4 and final==True:
         writeString(c,360,alto,620,check0(datos['FE_TTTIMP'][0][6]),titulo)
         writeString(c,408,alto,620,check0(datos['FE_TTTIMP'][0][7]),titulo)
         writeString(c,439,alto,620,check0(datos['FE_TTTIMP'][0][8]),titulo)
-        writeString(c,518,alto,620,check0(datos['FE_TTTIMP'][0][9]),titulo)
+        writeString(c,518,alto,620,check0(datos['FE_TTTIMP'][0][9]),9)
         
     if len(datos['FE_TTTIMP'])== 2:
         c.roundRect(60,alto-624,520,40,0,stroke=1,fill=0)
@@ -595,28 +632,10 @@ if numero_tabla<4 and final==True:
     writeString(c,65,alto,650,c_c2,6)
     c.roundRect(60,alto-684,205,25,3,stroke=1,fill=1)
     c.roundRect(60,alto-684.5,205.5,25.5,3,stroke=1,fill=0)
-    line=''
-    listado=['','']
-    unidadeslinea=1000
-    unidades_en_linea=0
-    text = medida_str(datos['TRANS'].replace('\n', ''))
-    for palabra in datos['TRANS'].split():
-        unidades_palabra += medida_str(palabra)
-        if unidades_en_linea + unidades_palabra < unidadeslinea:
-            unidades_en_linea += unidades_palabra
-            line += palabra+' '
-            listado[1] = line
-            
-        else:
-            listado[0] = line
-            line=''
-            unidades_en_linea=0
-        
-    if len(listado)>1:
-        writeString(c,65,alto,670,listado[0],6)
-        writeString(c,65,alto,680,listado[1],6)
-    else:
-        writeString(c,65,alto,670,listado[0],6)
+    lista=dividir_texto_por_ancho(datos['TRANS'],200)
+    for pos,linea in enumerate(lista):    
+        writeString(c,65,alto,670+pos*10,linea,6)
+   
     c.roundRect(60,alto-700,205,10,3,stroke=1,fill=0)
     c.roundRect(60,alto-700.5,205.5,10.5,3,stroke=1,fill=0)
     writeString(c,110,alto,697,p_realizados,6)
@@ -635,6 +654,12 @@ if numero_tabla<4 and final==True:
     writeString(c,210,alto,711,p_formulario,5)
     # texto de reemboloso
     writeString(c,40,alto,745,datos['MSG_LPI'].replace('\n', ''),5.3)
-
+    # textos de pie de pagina
+    listado=dividir_texto_por_ancho(datos['TXTPIE1'],230)
+    listado2=dividir_texto_por_ancho(datos['TXTPIE2'],230)
+    for pos,linea in enumerate(listado):
+        writeString(c,40,alto,760+pos*10,linea,5.3)
+    for pos,linea in enumerate(listado2):    
+        writeString(c,300,alto,760+pos*10,linea,5.3)
 
 c.save()
